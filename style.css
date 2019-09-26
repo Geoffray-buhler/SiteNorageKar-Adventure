@@ -121,7 +121,7 @@ button:hover{
     /* animation: animationbutton 2s linear alternate infinite; */
 }
 
-button:hover.svgimag{
+button.svgimag:hover{
     animation: animicones 2s;
 }
 
