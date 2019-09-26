@@ -118,7 +118,7 @@ button{
 button:hover{
     transition-duration: 1s;
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 15px 0 rgba(0, 0, 0, 0.19);
-    /* animation: animationbutton 2s linear alternate infinite; */
+    animation: animationbutton 2s linear alternate infinite;
 }
 
 button.svgimag:hover{
