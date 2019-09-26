@@ -1,3 +1,46 @@
+@keyframes animationbutton {
+    0% {
+        transform: rotate(0deg) scale(10);
+    }
+    10% {
+        transform: rotate(30deg) scale(15);
+    }
+    40% {
+        transform: rotate(180deg) scale(30);
+    }
+    60% {
+        transform: rotate(3000deg) scale(2);
+    }
+    80% {
+        transform:rotate(15000deg) scale(35);
+    }
+    100%{
+        transform: rotate(0deg) scale(0);
+    }
+}
+
+@keyframes animicones{
+    0% {
+        transform: scale(10);
+    }
+    10% {
+        transform: scale(15);
+    }
+    40% {
+        transform: scale(30);
+    }
+    60% {
+        transform: scale(2);
+    }
+    80% {
+        transform: scale(35);
+    }
+    100%{
+        transform: scale(0);
+    }
+
+}
+
 body{
     background: linear-gradient(#0e89b9, #000000);
 }
@@ -34,6 +77,7 @@ footer{
 }
 
 nav{
+    height: 80px;
     align-items: center;
     justify-content: space-evenly;
     list-style: none;
@@ -61,6 +105,28 @@ video#bgvideo {
     width: auto; 
     height: auto; 
     z-index: -100;
-    background: url(video/Turn.mp4) no-repeat;
+    background: url(video/Turne.mp4) no-repeat;
     background-size: cover;
+}
+
+button{
+    background-color: #0e89b9;
+    border:none;
+    border-radius:10px;
+}
+
+button:hover{
+    transition-duration: 1s;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 15px 0 rgba(0, 0, 0, 0.19);
+    /* animation: animationbutton 2s linear alternate infinite; */
+}
+
+button:hover.svgimag{
+    animation: animicones 2s;
+}
+
+.svgimag{
+    width: 40;
+    height: 20;
+    flex-direction: row;
 }
