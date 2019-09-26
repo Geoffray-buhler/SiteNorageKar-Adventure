@@ -81,7 +81,7 @@ nav{
     align-items: center;
     justify-content: space-evenly;
     list-style: none;
-    background: #03d7df;
+    background: #03d7df99;
     display: flex;
     border-radius: 10px;
     flex-direction: row;
@@ -92,7 +92,7 @@ header{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-color:#004095;
+    background-color:#00409599;
     border-radius: 25px;
 }
 
