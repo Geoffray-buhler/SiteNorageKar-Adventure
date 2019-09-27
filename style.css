@@ -119,12 +119,12 @@ button:hover{
     transition-duration: 1s;
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 15px 0 rgba(0, 0, 0, 0.19);
     /* animation: animationbutton 2s linear alternate infinite; */
-}
+ } 
 
 button:hover.svgimag{
     transition-duration: 1s;
-    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 15px 0 rgba(0, 0, 0, 0.19);
-    animation: animicones 2s;
+    /* box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 15px 0 rgba(0, 0, 0, 0.19); */
+    animation: animicones 2s linear alternate infinite;
 }
 
 .svgimag{
