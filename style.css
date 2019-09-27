@@ -42,7 +42,7 @@
 }
 
 body{
-    background: linear-gradient(#0e89b9, #000000);
+    /* background: linear-gradient(#0e89b9, #000000); */
 }
 
 h1{
@@ -109,6 +109,19 @@ video#bgvideo {
     height: auto; 
     z-index: -100;
     background: url(video/Turne.mp4) no-repeat;
+    background-size: cover;
+}
+
+.imgbgend{
+    position: fixed; 
+    right: 35%; 
+    bottom: 0%;
+    min-width: 30%; 
+    min-height: 0%;
+    width: auto; 
+    height: auto; 
+    z-index: -99;
+    background: url(img/kakapo6SS.gif) no-repeat;
     background-size: cover;
 }
 
