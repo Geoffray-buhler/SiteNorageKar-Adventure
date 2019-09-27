@@ -130,6 +130,6 @@ button:hover.svgimag{
     width: 40;
     height: 20;
     flex-direction: row;
-    animation: animicones 2s linear alternate infinite;
+    animation: animicones 5s linear alternate infinite;
     transition-duration: 1s;
 }
