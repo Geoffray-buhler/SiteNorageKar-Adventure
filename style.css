@@ -52,6 +52,9 @@ h1{
 }
 
 h2{
+    background: #0e89b970;
+    border-radius: 10px;
+    margin-left: 40%;
     text-align: center;
     color: #ffffff;
     display: inline-block;
@@ -122,7 +125,6 @@ button:hover{
  } 
 
 button:hover.svgimag{
-    transition-duration: 1s;
     transform: rotate(360);
 }
 
