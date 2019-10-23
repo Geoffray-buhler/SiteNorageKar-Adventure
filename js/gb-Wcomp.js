@@ -23,39 +23,20 @@ class GbNavBar extends HTMLElement {
         `;
     }
 }
+
 customElements.define('gb-navbar', GbNavBar);
 
-function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-        if ((new Date().getTime() - start) > milliseconds) {
-            break;
-        }
-    }
-}
-
-class GbHead extends HTMLElement {
-    // Lifecycle hook
-    connectedCallback() {
-        this.render();
-    }
-
-    // Custom rendering function
-    render() {
-        this.innerHTML = `<div class="">
-            
-            </div>`;
-    }
-}
+// definition des bouleens pour les direction de deplacement du personnage
 
 var actions = {
     "up": false,
     "down": false,
     "left": false,
     "right": false,
-    "all": false
+    "shoot": false
 };
 
+// valeur des direction pour la table des sprite personnages
 
 var DIRECTION = {
     "STOP": 10,
@@ -64,6 +45,15 @@ var DIRECTION = {
     "BAS": 10,
     "DROITE": 11
 }
+
+var ACTIONSPLAY = {
+    "SHOOT_HAUT": 1,
+    "SHOOT_GAUCHE": 1,
+    "SHOOT_BAS": 1,
+    "SHOOT_DROITE": 1,
+}
+
+// creation du personnage
 
 function Personnage(url, x, y, direction) {
     this.x = x; // (en cases)
@@ -82,14 +72,14 @@ function Personnage(url, x, y, direction) {
         this.referenceDuPerso.largeur = this.width / 13;
         this.referenceDuPerso.hauteur = this.height / 21;
     }
-    // this.image.src = "./img/perso/313386.png" + url;
+        // lien sur l'image
     this.image.src = "./img/perso/" + url;
 
+        // configuration des deplacement du personnage
 
     this.keyFrame = 0;
-    this.framesPerKeyFrame = 10;
+    this.framesPerKeyFrame = 7;
     this.animatedFrames = 0;
-
 
     this.movementSpeed = 0.03;
 }
@@ -103,12 +93,12 @@ Personnage.prototype.dessinerPersonnage = function (context) {
         this.largeur, this.hauteur // Taille du rectangle destination (c'est la taille du personnage)
     );
 }
-
+    // fonction pour lancer des action tout les ticks 60 ticks par seconde
 Personnage.prototype.tick = function () {
     this.deplacement();
     this.updateMovementAnimation();
 }
-
+    // systeme de deplacement du personnage en fonction des inputes
 Personnage.prototype.deplacement = function () {
     if (actions.down) {
         this.y = this.y + this.movementSpeed;
@@ -122,20 +112,18 @@ Personnage.prototype.deplacement = function () {
     } else if (actions.left) {
         this.x = this.x - this.movementSpeed;
         this.direction = DIRECTION.GAUCHE;
+    }else if (actions.shoot) {
+        coummeca = this.direction;
     }else if (!this.isMoving()) {
-        this.lol = 320;
+        this.lol = 0;
     }
-    // if (event.which == 40 || event.keyCode == 40) {
-    //     this.y += 0.01;
-    //     return false;
-    // }
-    // return true;
-
 };
+
+// fonction qui permet de verifier si le personnage bouge 
 
 Personnage.prototype.isMoving = function(){
     // return !(!actions.left && !actions.up && !actions.right && !actions.down);
-    return actions.left || actions.up || actions.right || actions.down;
+    return actions.left || actions.up || actions.right || actions.down || actions.shoot;
 }
 
 Personnage.prototype.updateMovementAnimation = function(){
@@ -148,37 +136,6 @@ Personnage.prototype.updateMovementAnimation = function(){
         ++this.keyFrame;
         this.animatedFrames = 0;
     }
-
-    
-    // sleep(110);
-
-    // if (this.lol == this.lol * 0) {
-    //     this.lol = 64;
-    // } else if (this.lol == 64) {
-    //     this.lol = 128;
-    //     sleep(110);
-    // } else if (this.lol == 128) {
-    //     this.lol = 192;
-    //     sleep(110);
-    // } else if (this.lol == 192) {
-    //     this.lol = 256;
-    //     sleep(110);
-    // } else if (this.lol == 256) {
-    //     this.lol = 320;
-    //     sleep(110);
-    // } else if (this.lol == 320) {
-    //     this.lol = 384;
-    //     sleep(110);
-    // } else if (this.lol == 384) {
-    //     this.lol = 448;
-    //     sleep(110);
-    // } else if (this.lol == 448) {
-    //     this.lol = 512;
-    //     sleep(110);
-    // } else if (this.lol == 512) {
-    //     this.lol = 0;
-    //     sleep(110);
-    // }
 }
 
 var canvasSize = {
@@ -234,14 +191,8 @@ document.addEventListener("keydown", (evt) => {
         actions.left = true;
     } else if (evt.key === "ArrowRight") {
         actions.right = true;
-    } else if (evt.key === "ArrowRight" && evt.key === "ArrowUp") {
-        actions.right = true;
-    } else if (evt.key === "ArrowRight" && evt.key === "ArrowDown") {
-        actions.right = true;
-    } else if (evt.key === "ArrowRight" && evt.key === "ArrowUp") {
-        actions.right = true;
-    } else if (evt.key === "ArrowRight" && evt.key === "ArrowDown") {
-        actions.right = true;
+    } else if (evt.key === "d") {
+        actionsplay.shoot_bas = true;
     }
 });
 
@@ -254,13 +205,7 @@ document.addEventListener("keyup", (evt) => {
         actions.left = false;
     } else if (evt.key === "ArrowRight") {
         actions.right = false;
-    }else if (evt.key === "ArrowRight" && evt.key === "ArrowUp") {
-        actions.right = false;
-    }else if (evt.key === "ArrowRight" && evt.key === "ArrowDown") {
-        actions.right = false;
-    }else if (evt.key === "ArrowRight" && evt.key === "ArrowUp") {
-        actions.right = false;
-    }else if (evt.key === "ArrowRight" && evt.key === "ArrowDown") {
-        actions.right = false;
+    }else if (evt.key === "d") {
+        actionsplay.shoot_bas = false;
     }
 });
