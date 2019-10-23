@@ -103,16 +103,16 @@ Personnage.prototype.tick = function () {
 
 Personnage.prototype.deplacement = function () {
     if (actions.down) {
-        this.y = this.y + 0.1;
+        this.y = this.y + 0.2;
         this.direction = DIRECTION.BAS;
     } else if (actions.up) {
-        this.y = this.y - 0.1;
+        this.y = this.y - 0.2;
         this.direction = DIRECTION.HAUT;
     } else if (actions.right) {
-        this.x = this.x + 0.1;
+        this.x = this.x + 0.2;
         this.direction = DIRECTION.DROITE;
     } else if (actions.left) {
-        this.x = this.x - 0.1;
+        this.x = this.x - 0.2;
         this.direction = DIRECTION.GAUCHE;
     }else if (!actions.left & !actions.up & !actions.right & !actions.down) {
         this.lol = 320;
