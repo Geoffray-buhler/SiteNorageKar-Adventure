@@ -84,6 +84,14 @@ function Personnage(url, x, y, direction) {
     }
     // this.image.src = "./img/perso/313386.png" + url;
     this.image.src = "./img/perso/" + url;
+
+
+    this.keyFrame = 0;
+    this.framesPerKeyFrame = 10;
+    this.animatedFrames = 0;
+
+
+    this.movementSpeed = 0.03;
 }
 
 Personnage.prototype.dessinerPersonnage = function (context) {
@@ -103,18 +111,18 @@ Personnage.prototype.tick = function () {
 
 Personnage.prototype.deplacement = function () {
     if (actions.down) {
-        this.y = this.y + 0.2;
+        this.y = this.y + this.movementSpeed;
         this.direction = DIRECTION.BAS;
     } else if (actions.up) {
-        this.y = this.y - 0.2;
+        this.y = this.y - this.movementSpeed;
         this.direction = DIRECTION.HAUT;
     } else if (actions.right) {
-        this.x = this.x + 0.2;
+        this.x = this.x + this.movementSpeed;
         this.direction = DIRECTION.DROITE;
     } else if (actions.left) {
-        this.x = this.x - 0.2;
+        this.x = this.x - this.movementSpeed;
         this.direction = DIRECTION.GAUCHE;
-    }else if (!actions.left & !actions.up & !actions.right & !actions.down) {
+    }else if (!this.isMoving()) {
         this.lol = 320;
     }
     // if (event.which == 40 || event.keyCode == 40) {
@@ -125,34 +133,52 @@ Personnage.prototype.deplacement = function () {
 
 };
 
+Personnage.prototype.isMoving = function(){
+    // return !(!actions.left && !actions.up && !actions.right && !actions.down);
+    return actions.left || actions.up || actions.right || actions.down;
+}
+
 Personnage.prototype.updateMovementAnimation = function(){
-    if (this.lol == this.lol * 0) {
-        this.lol = 64;
-    } else if (this.lol == 64) {
-        this.lol = 128;
-        sleep(110);
-    } else if (this.lol == 128) {
-        this.lol = 192;
-        sleep(110);
-    } else if (this.lol == 192) {
-        this.lol = 256;
-        sleep(110);
-    } else if (this.lol == 256) {
-        this.lol = 320;
-        sleep(110);
-    } else if (this.lol == 320) {
-        this.lol = 384;
-        sleep(110);
-    } else if (this.lol == 384) {
-        this.lol = 448;
-        sleep(110);
-    } else if (this.lol == 448) {
-        this.lol = 512;
-        sleep(110);
-    } else if (this.lol == 512) {
-        this.lol = 0;
-        sleep(110);
+    if(!this.isMoving()) return;
+
+    this.lol = 64 * (this.keyFrame % 9);
+
+    ++this.animatedFrames;
+    if(this.animatedFrames == this.framesPerKeyFrame){
+        ++this.keyFrame;
+        this.animatedFrames = 0;
     }
+
+    
+    // sleep(110);
+
+    // if (this.lol == this.lol * 0) {
+    //     this.lol = 64;
+    // } else if (this.lol == 64) {
+    //     this.lol = 128;
+    //     sleep(110);
+    // } else if (this.lol == 128) {
+    //     this.lol = 192;
+    //     sleep(110);
+    // } else if (this.lol == 192) {
+    //     this.lol = 256;
+    //     sleep(110);
+    // } else if (this.lol == 256) {
+    //     this.lol = 320;
+    //     sleep(110);
+    // } else if (this.lol == 320) {
+    //     this.lol = 384;
+    //     sleep(110);
+    // } else if (this.lol == 384) {
+    //     this.lol = 448;
+    //     sleep(110);
+    // } else if (this.lol == 448) {
+    //     this.lol = 512;
+    //     sleep(110);
+    // } else if (this.lol == 512) {
+    //     this.lol = 0;
+    //     sleep(110);
+    // }
 }
 
 var canvasSize = {
