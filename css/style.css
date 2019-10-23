@@ -1,7 +1,7 @@
-.bg-img{
+.bg{
     width: 100%;
     height: 100%;
-    background-image: url(../img/yoda.jpg);
+    background: #50505063;;
 }
 
 .img-nav{

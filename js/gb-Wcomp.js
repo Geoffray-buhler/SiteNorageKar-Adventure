@@ -33,7 +33,10 @@ var actions = {
     "down": false,
     "left": false,
     "right": false,
-    "shoot": false
+    "shoot_down": false,
+    "shoot_up": false,
+    "shoot_right": false,
+    "shoot_left": false
 };
 
 // valeur des direction pour la table des sprite personnages
@@ -48,9 +51,9 @@ var DIRECTION = {
 
 var ACTIONSPLAY = {
     "SHOOT_HAUT": 1,
-    "SHOOT_GAUCHE": 1,
-    "SHOOT_BAS": 1,
-    "SHOOT_DROITE": 1,
+    "SHOOT_GAUCHE": 2,
+    "SHOOT_BAS": 3,
+    "SHOOT_DROITE": 4,
 }
 
 // creation du personnage
@@ -118,6 +121,12 @@ Personnage.prototype.deplacement = function () {
         this.lol = 0;
     }
 };
+
+Personnage.prototype.actionsingame = function(){
+    if (action.shoot_down){
+        this.direction = ACTIONSPLAY.SHOOT_BAS;
+    }
+}
 
 // fonction qui permet de verifier si le personnage bouge 
 
@@ -191,8 +200,14 @@ document.addEventListener("keydown", (evt) => {
         actions.left = true;
     } else if (evt.key === "ArrowRight") {
         actions.right = true;
+    } else if (evt.key === "s") {
+        action.shoot_down = true;
+    } else if (evt.key === "q") {
+        action.shoot_left = true;
     } else if (evt.key === "d") {
-        actionsplay.shoot_bas = true;
+        action.shoot_right = true;
+    } else if (evt.key === "z") {
+        action.shoot_up = true;
     }
 });
 
@@ -205,7 +220,13 @@ document.addEventListener("keyup", (evt) => {
         actions.left = false;
     } else if (evt.key === "ArrowRight") {
         actions.right = false;
+    }else if (evt.key === "s") {
+        action.shoot_down = false;
     }else if (evt.key === "d") {
-        actionsplay.shoot_bas = false;
+        action.shoot_right = false;
+    }else if (evt.key === "q") {
+        action.shoot_left = false;
+    }else if (evt.key === "z") {
+        action.shoot_up = false;
     }
 });
