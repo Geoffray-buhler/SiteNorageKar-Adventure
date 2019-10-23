@@ -116,7 +116,6 @@ Personnage.prototype.deplacement = function () {
         this.direction = DIRECTION.GAUCHE;
     }else if (!actions.left & !actions.up & !actions.right & !actions.down) {
         this.lol = 320;
-        this.direction = DIRECTION.STOP;
     }
     // if (event.which == 40 || event.keyCode == 40) {
     //     this.y += 0.01;
@@ -172,7 +171,7 @@ var canevas = document.getElementById('canvas'); // dans votre HTML, cet éléme
 var ctx = canevas.getContext('2d');
 var personnages = [];
 
-personnages.push(new Personnage("téléchargement.png", 15, 6, DIRECTION.HAUT));
+personnages.push(new Personnage("téléchargement.png", 15, 6, DIRECTION.BAS));
 
 function clear() {
     // ctx.fillStyle = "transparent";
