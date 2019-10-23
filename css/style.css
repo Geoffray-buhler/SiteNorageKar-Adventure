@@ -1,13 +1,16 @@
 .bg{
     width: 100%;
     height: 100%;
-    background: #50505063;;
+    background: #50505028;;
 }
 
 .img-nav{
-    width: 100px;
-    height: 100px;
-    margin-left: 35%;
+    width: 80px;
+    height: 80px;
+}
+
+.nav-link{
+    color: #16fb62;
 }
 
 .rounded-right{

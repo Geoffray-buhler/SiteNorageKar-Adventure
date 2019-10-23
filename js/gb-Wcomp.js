@@ -1,30 +1,30 @@
 // On créé un custom Element pour notre navbar, basé sur bootstrap
 
-class GbNavBar extends HTMLElement {
-    // Lifecycle hook
-    connectedCallback() {
-        this.render();
-    }
+// class GbNavBar extends HTMLElement {
+//     // Lifecycle hook
+//     connectedCallback() {
+//         this.render();
+//     }
 
-    // Custom rendering function
-    render() {
-        const colorAttr = this.getAttribute("color") || "light";
-        this.innerHTML =
-            `
-                <nav class="nav flex-column text-center border border-light fixed rounded-right bg-primary">
-                    <img class="img-nav " src="./img/Avec_Effet.png">
-                    <div class="border-top m-3"></div>
-                    <a class="nav-link" href="#"><button class="btn btn-secondary shadow">Accueil</button></a>
-                    <a class="nav-link" href="#"><button class="btn btn-secondary shadow">Petits projets Stream</button></a>
-                    <a class="nav-link" href="#"><button class="btn btn-secondary shadow">Norage-Kart Adventure</button></a>
-                    <a class="nav-link mb-3" href="#"><button class="btn btn-secondary shadow">Contact</button></a>
-                    <p>Copyright 2019-2022</p>
-                </nav>
-        `;
-    }
-}
+//     // Custom rendering function
+//     render() {
+//         const colorAttr = this.getAttribute("color") || "light";
+//         this.innerHTML =
+//             `
+//                 <nav class="nav flex-column text-center border border-light fixed rounded-right bg-primary">
+//                     <img class="img-nav " src="./img/Avec_Effet.png">
+//                     <div class="border-top m-3"></div>
+//                     <a class="nav-link" href="#"><button class="btn btn-secondary shadow">Accueil</button></a>
+//                     <a class="nav-link" href="#"><button class="btn btn-secondary shadow">Petits projets Stream</button></a>
+//                     <a class="nav-link" href="#"><button class="btn btn-secondary shadow">Norage-Kart Adventure</button></a>
+//                     <a class="nav-link mb-3" href="#"><button class="btn btn-secondary shadow">Contact</button></a>
+//                     <p>Copyright 2019-2022</p>
+//                 </nav>
+//         `;
+//     }
+// }
 
-customElements.define('gb-navbar', GbNavBar);
+// customElements.define('gb-navbar', GbNavBar);
 
 // definition des bouleens pour les direction de deplacement du personnage
 
@@ -163,7 +163,9 @@ var canevas = document.getElementById('canvas'); // dans votre HTML, cet éléme
 var ctx = canevas.getContext('2d');
 var personnages = [];
 
-personnages.push(new Personnage("téléchargement.png", 15, 6, DIRECTION.BAS));
+personnages.push(new Personnage("téléchargement.png", 21.5, 0.6, DIRECTION.BAS));
+personnages.push(new Personnage("téléchargement.png", 12.5, 0.6, DIRECTION.BAS));
+
 
 function clear() {
     // ctx.fillStyle = "transparent";
