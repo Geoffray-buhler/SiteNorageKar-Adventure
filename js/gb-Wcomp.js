@@ -50,12 +50,8 @@ class GbHead extends HTMLElement {
 
 var actions = {
     "up": false,
-    "up_left":false,
-    "down_left":false,
     "down": false,
     "left": false,
-    "up_right":false,
-    "down_right":false,
     "right": false,
     "all": false
 };
@@ -102,6 +98,35 @@ Personnage.prototype.dessinerPersonnage = function (context) {
 
 Personnage.prototype.tick = function () {
     this.deplacement();
+    this.updateMovementAnimation();
+}
+
+Personnage.prototype.deplacement = function () {
+    if (actions.down) {
+        this.y = this.y + 0.1;
+        this.direction = DIRECTION.BAS;
+    } else if (actions.up) {
+        this.y = this.y - 0.1;
+        this.direction = DIRECTION.HAUT;
+    } else if (actions.right) {
+        this.x = this.x + 0.1;
+        this.direction = DIRECTION.DROITE;
+    } else if (actions.left) {
+        this.x = this.x - 0.1;
+        this.direction = DIRECTION.GAUCHE;
+    }else if (!actions.left & !actions.up & !actions.right & !actions.down) {
+        this.lol = 320;
+        this.direction = DIRECTION.STOP;
+    }
+    // if (event.which == 40 || event.keyCode == 40) {
+    //     this.y += 0.01;
+    //     return false;
+    // }
+    // return true;
+
+};
+
+Personnage.prototype.updateMovementAnimation = function(){
     if (this.lol == this.lol * 0) {
         this.lol = 64;
     } else if (this.lol == 64) {
@@ -131,46 +156,6 @@ Personnage.prototype.tick = function () {
     }
 }
 
-Personnage.prototype.deplacement = function (evt) {
-    if (actions.down) {
-        this.y = this.y + 0.1;
-    } else if (actions.up) {
-        this.y = this.y - 0.1;
-    } else if (actions.right) {
-        this.x = this.x + 0.1;
-    } else if (actions.left) {
-        this.x = this.x - 0.1;
-    }else if (actions.down_left) {
-        this.x = this.x - 0.1;
-        this.y = this.y + 0.1;
-    }else if (actions.up_right) {
-        this.x = this.x + 0.1;
-        this.y = this.y - 0.1;
-    }else if (actions.down_right) {
-        this.x = this.x + 0.1;
-        this.y = this.y + 0.1;
-    }else if (actions.up_left) {
-        this.x = this.x - 0.1;
-        this.y = this.y - 0.1;
-    }else if (!actions.left & !actions.up & !actions.right & !actions.down) {
-        this.lol = 320;
-        this.direction = DIRECTION.STOP;
-    }
-
-    var savx = this.x;
-    var savy = this.y;
-    // if (event.which == 40 || event.keyCode == 40) {
-    //     this.y += 0.01;
-    //     return false;
-    // }
-    // return true;
-    function posact(){
-        this.x = savx;
-        this.y = savy;
-    }
-
-};
-
 var canvasSize = {
     x: 1920,
     y: 888
@@ -187,7 +172,7 @@ var canevas = document.getElementById('canvas'); // dans votre HTML, cet éléme
 var ctx = canevas.getContext('2d');
 var personnages = [];
 
-personnages.push(new Personnage("téléchargement.png", 2, 1, DIRECTION.HAUT));
+personnages.push(new Personnage("téléchargement.png", 15, 6, DIRECTION.HAUT));
 
 function clear() {
     // ctx.fillStyle = "transparent";
