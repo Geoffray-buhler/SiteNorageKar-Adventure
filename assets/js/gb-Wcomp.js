@@ -76,7 +76,13 @@ function Personnage(url, x, y, direction) {
         this.referenceDuPerso.hauteur = this.height / 21;
     }
         // lien sur l'image
-    this.image.src = "./img/perso/" + url;
+        this.image.src = "../assets/img/perso/" + url;
+
+        if (this.image.src.status == "undefined") {
+            this.image.src = "./assets/img/perso/" + url;
+        }
+        
+
 
         // configuration des deplacement du personnage
 
@@ -154,17 +160,17 @@ var canvasSize = {
 
 var canevas = document.getElementById('canvas'); // dans votre HTML, cet élément apparaît comme <canvas id="monCanevas"></canvas>
 
-{
-    // Récupère et affiche taille du canvas
-    const rect = canevas.getBoundingClientRect();
-    console.log(rect);
-}
+// {
+//     // Récupère et affiche taille du canvas
+//     const rect = canevas.getBoundingClientRect();
+//     console.log(rect);
+// }
 
 var ctx = canevas.getContext('2d');
 var personnages = [];
 
 // personnages.push(new Personnage("téléchargement.png", 21.5, 0.6, DIRECTION.BAS));
-personnages.push(new Personnage("{{./assets/img/perso/téléchargement.png | relative.url }}", 12.5, 0.6, DIRECTION.BAS));
+personnages.push(new Personnage("telechargement.png", 14.5, 2.3, DIRECTION.BAS));
 
 
 function clear() {
@@ -194,6 +200,8 @@ updateCycle();
 
 
 document.addEventListener("keydown", (evt) => {
+    evt.preventDefault();
+
     if (evt.key === "ArrowDown") {
         actions.down = true;
     } else if (evt.key === "ArrowUp") {
