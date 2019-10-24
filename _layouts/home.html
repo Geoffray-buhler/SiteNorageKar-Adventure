@@ -1,0 +1,43 @@
+---
+layout : default
+---
+<h2 class="text-center">Projet Principale</h2>
+<div class="container">
+    <div class="row"></div>
+    {% for files in site.articles %}
+    <div class="offset-4 col-4 p-2">
+        <div class="card zoom">
+            <img src="./assets/img/{{ files.title | relative_url }}.png" alt="image" class="m-2 img-fluid ">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{{ files.url | relative_url }}">{{ files.title | escape }}</a>
+                </h5>
+                <p class="card-text">Petite previsualisation de <span
+                        class="text-primary">{{ files.title | escape }}</span>.
+                </p>
+            </div>
+        </div>
+    </div>
+    {%- endfor -%}
+</div>
+<h2 class="text-center">Projet Stream</h2>
+<div class="row">
+    {% for files in site.game %}
+    <div class="col-12 col-md-6 p-2">
+        <div class="card zoom">
+            <!-- <img src="./assets/img/{{ files.title | relative_url }}.png" alt="image" class="m-2 img-card"> -->
+
+            <img src={{ "./assets/img/" | append: files.title | append: ".png" | relative_url }} alt="image" class="m-2 img-card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{{ files.url | relative_url }}">{{ files.title | escape }}</a>
+                </h5>
+                <p class="card-text">Vous pouvez telecharger ce jeu gratuitement ! Bon jeu
+                </p>
+            </div>
+        </div>
+    </div>
+
+    {%- endfor -%}
+</div>
+</div>

@@ -1,0 +1,10 @@
+baseurl: "/SiteNorageKar-Adventure" # the subpath of your site, e.g. /blog
+
+
+collections:
+  other:
+    output: true
+  game:
+    output: true
+  articles:
+    output: true
