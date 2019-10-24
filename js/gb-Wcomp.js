@@ -163,7 +163,7 @@ var canevas = document.getElementById('canvas'); // dans votre HTML, cet éléme
 var ctx = canevas.getContext('2d');
 var personnages = [];
 
-personnages.push(new Personnage("téléchargement.png", 21.5, 0.6, DIRECTION.BAS));
+// personnages.push(new Personnage("téléchargement.png", 21.5, 0.6, DIRECTION.BAS));
 personnages.push(new Personnage("téléchargement.png", 12.5, 0.6, DIRECTION.BAS));
 
 
