@@ -76,20 +76,13 @@ function Personnage(url, x, y, direction) {
         this.referenceDuPerso.hauteur = this.height / 21;
     }
         // lien sur l'image
-        this.image.src = "../assets/img/perso/" + url;
-
-        if (this.image.src.status == "undefined") {
-            this.image.src = "./assets/img/perso/" + url;
-        }
-        
-
+        this.image.src = "./assets/img/perso/" + url;
 
         // configuration des deplacement du personnage
 
     this.keyFrame = 0;
     this.framesPerKeyFrame = 7;
     this.animatedFrames = 0;
-
     this.movementSpeed = 0.03;
 }
 
