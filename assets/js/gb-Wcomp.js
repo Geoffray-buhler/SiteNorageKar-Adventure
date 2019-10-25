@@ -1,3 +1,5 @@
+
+
 // On créé un custom Element pour notre navbar, basé sur bootstrap
 
 // class GbNavBar extends HTMLElement {
@@ -42,7 +44,6 @@ var actions = {
 // valeur des direction pour la table des sprite personnages
 
 var DIRECTION = {
-    "STOP": 10,
     "HAUT": 8,
     "GAUCHE": 9,
     "BAS": 10,
@@ -58,7 +59,7 @@ var ACTIONSPLAY = {
 
 // creation du personnage
 
-function Personnage(url, x, y, direction) {
+function Personnage(pictureFileName, x, y, direction) {
     this.x = x; // (en cases)
     this.y = y; // (en cases)
     this.direction = direction;
@@ -76,14 +77,14 @@ function Personnage(url, x, y, direction) {
         this.referenceDuPerso.hauteur = this.height / 21;
     }
         // lien sur l'image
-        this.image.src = "./assets/img/perso/" + url;
+        this.image.src = ASSETS_PATH + pictureFileName;
 
         // configuration des deplacement du personnage
 
     this.keyFrame = 0;
     this.framesPerKeyFrame = 7;
     this.animatedFrames = 0;
-    this.movementSpeed = 0.03;
+    this.movementSpeed = 0.05;
 }
 
 Personnage.prototype.dessinerPersonnage = function (context) {
@@ -162,7 +163,7 @@ var canevas = document.getElementById('canvas'); // dans votre HTML, cet éléme
 var ctx = canevas.getContext('2d');
 var personnages = [];
 
-// personnages.push(new Personnage("téléchargement.png", 21.5, 0.6, DIRECTION.BAS));
+// personnages.push(new Personnage("telechargement.png", 21.5, 0.6, DIRECTION.BAS));
 personnages.push(new Personnage("telechargement.png", 14.5, 2.3, DIRECTION.BAS));
 
 
