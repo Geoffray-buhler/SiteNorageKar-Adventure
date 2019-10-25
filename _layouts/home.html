@@ -1,12 +1,12 @@
 ---
 layout : default
 ---
-<h2 class="text-center">Projet Principale</h2>
+<h2 class="text-center border-bottom p-3">Projet Principale</h2>
 <div class="container">
     <div class="row"></div>
     {% for files in site.articles %}
     <div class="col-12 offset-md-3 col-md-6 p-2">
-        <div class="card zoom">
+        <div class="card zoom shadow">
             <img src={{ "./assets/img/" | append: files.title | append: ".png" | relative_url }} alt="image" class="m-2 img-fluid ">
             <div class="card-body">
                 <h5 class="card-title">
@@ -20,11 +20,11 @@ layout : default
     </div>
     {%- endfor -%}
 </div>
-<h2 class="text-center">Projet Stream</h2>
+<h2 class="text-center p-3 border-bottom">Projet Stream</h2>
 <div class="row">
     {% for files in site.game %}
     <div class="col-12 col-md-6 p-2 inline text-center">
-        <div class="card zoom card-container">
+        <div class="card zoom card-container shadow">
             <!-- <img src="./assets/img/{{ files.title | relative_url }}.png" alt="image" class="m-2 img-card"> -->
 
             <img src={{ "./assets/img/" | append: files.title | append: ".png" | relative_url }} alt="image" class="m-2 img-card">
