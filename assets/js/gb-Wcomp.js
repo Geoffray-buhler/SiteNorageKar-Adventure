@@ -75,7 +75,7 @@ function Personnage(pictureFileName, x, y, direction) {
     this.keyFrame = 0;
     this.framesPerKeyFrame = 7;
     this.animatedFrames = 0;
-    this.movementSpeed = 0.05;
+    this.movementSpeed = 0.01;
 }
 
 Personnage.prototype.dessinerPersonnage = function (context) {
@@ -87,9 +87,23 @@ Personnage.prototype.dessinerPersonnage = function (context) {
         this.largeur, this.hauteur // Taille du rectangle destination (c'est la taille du personnage)
     );
 }
+
+Personnage.prototype.localisation = function(){
+    var herex = this.x;
+    var herey = this.y;
+    ctx.strokeStyle = '#00ffff';
+    ctx.lineWidth = 1;
+    ctx.font = '20px arial';
+    herex = Math.trunc(herex)
+    herey = Math.trunc(herey)
+    ctx.strokeText(herex, 110, 50);
+    ctx.strokeText(herey, 110, 75);
+}
+
 // fonction pour lancer des actions tout les ticks 60 ticks par seconde
 Personnage.prototype.tick = function () {
     this.deplacement();
+    this.localisation();
     this.actionsInGame();
 }
 // systeme de deplacement du personnage en fonction des inputes
@@ -98,16 +112,16 @@ Personnage.prototype.deplacement = function () {
         if (actions.down) {
             this.y = this.y + this.movementSpeed;
             this.direction = DIRECTION.BAS;
-        } else if (actions.up) {
+        } if (actions.up) {
             this.y = this.y - this.movementSpeed;
             this.direction = DIRECTION.HAUT;
-        } else if (actions.right) {
+        } if (actions.right) {
             this.x = this.x + this.movementSpeed;
             this.direction = DIRECTION.DROITE;
-        } else if (actions.left) {
+        } if (actions.left) {
             this.x = this.x - this.movementSpeed;
             this.direction = DIRECTION.GAUCHE;
-        } else if (!this.isMoving()) {
+        } if (!this.isMoving()) {
             this.lol = 0;
         }
         this.updateMovementAnimation();

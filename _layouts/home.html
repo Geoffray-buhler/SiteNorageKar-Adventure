@@ -7,7 +7,8 @@ layout : default
     {% for files in site.articles %}
     <div class="col-12 offset-md-3 col-md-6 p-2">
         <div class="card zoom shadow">
-            <img src={{ "./assets/img/" | append: files.title | append: ".png" | relative_url }} alt="image" class="m-2 img-fluid ">
+            <img src={{ "./assets/img/" | append: files.title | append: ".png" | relative_url }} alt="image"
+                class="m-2 img-fluid ">
             <div class="card-body">
                 <h5 class="card-title">
                     <a href="{{ files.url | relative_url }}">{{ files.title | escape }}</a>
@@ -21,23 +22,23 @@ layout : default
     {%- endfor -%}
 </div>
 <h2 class="text-center p-3 border-bottom">Projet Stream</h2>
-<div class="row">
-    {% for files in site.game %}
-    <div class="col-12 col-md-6 p-2 inline text-center">
-        <div class="card zoom card-container shadow">
-            <!-- <img src="./assets/img/{{ files.title | relative_url }}.png" alt="image" class="m-2 img-card"> -->
-
-            <img src={{ "./assets/img/" | append: files.title | append: ".png" | relative_url }} alt="image" class="m-2 img-card">
-            <div class="card-body">
-                <h5 class="card-title">
-                    <a href="{{ files.url | relative_url }}">{{ files.title | escape }}</a>
-                </h5>
-                <p class="card-text">Vous pouvez telecharger ce jeu gratuitement ! Bon jeu
-                </p>
+<div class="container">
+    <div class="row">
+        {% for files in site.game %}
+        <div class="col-12 col-md-6 p-2 inline text-center">
+            <div class="card zoom card-container shadow">
+                <img src={{ "./assets/img/" | append: files.title | append: ".png" | relative_url }} alt="image"
+                    class="m-2 img-card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{ files.url | relative_url }}">{{ files.title | escape }}</a>
+                    </h5>
+                    <p class="card-text">Vous pouvez telecharger ce jeu gratuitement ! Bon jeu
+                    </p>
+                </div>
             </div>
         </div>
+        {%- endfor -%}
     </div>
-
-    {%- endfor -%}
 </div>
 </div>
