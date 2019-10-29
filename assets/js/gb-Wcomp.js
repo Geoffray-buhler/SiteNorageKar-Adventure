@@ -103,7 +103,7 @@ Personnage.prototype.localisation = function(){
 // fonction pour lancer des actions tout les ticks 60 ticks par seconde
 Personnage.prototype.tick = function () {
     this.deplacement();
-    this.localisation();
+    // this.localisation();
     this.actionsInGame();
 }
 // systeme de deplacement du personnage en fonction des inputes
