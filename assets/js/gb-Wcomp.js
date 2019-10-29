@@ -88,6 +88,7 @@ Personnage.prototype.dessinerPersonnage = function (context) {
     );
 }
 
+// fonction qui permet de recuperer les coordonées du personnage et de les affiché
 Personnage.prototype.localisation = function(){
     var herex = this.x;
     var herey = this.y;
