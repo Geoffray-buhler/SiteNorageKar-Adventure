@@ -46,48 +46,47 @@ var DIRECTION = {
 }
 
 var directionSpeed = {
-    x:100,
-    y:100,
-    vx:5,
-    vy:2,
+    x: 100,
+    y: 100,
+    vx: 5,
+    vy: 2,
 }
 
-var basepos ={
-     x:14.5, 
-     y:2.3
+var basepos = {
+    x: 14.5,
+    y: 2.3
 }
 
-var deplacementOk ;
-deplacementOk = true ;
+var deplacementOk;
+deplacementOk = true;
 
-function drawBubble(ctx, x, y, w, h, radius)
-{
-  var r = x + w;
-  var b = y + h;
-  ctx.beginPath();
-  ctx.fillStyle="#DAA10988";
-  ctx.strokeStyle="#181812";
-  ctx.lineWidth="2";
-  ctx.moveTo(x+radius, y);
-  ctx.lineTo(x+radius/2, y-10);
-  ctx.lineTo(x+radius * 2, y);
-  ctx.lineTo(r-radius, y);
-  ctx.quadraticCurveTo(r, y, r, y+radius);
-  ctx.lineTo(r, y+h-radius);
-  ctx.quadraticCurveTo(r, b, r-radius, b);
-  ctx.lineTo(x+radius, b);
-  ctx.quadraticCurveTo(x, b, x, b-radius);
-  ctx.lineTo(x, y+radius);
-  ctx.quadraticCurveTo(x, y, x+radius, y);
-  ctx.stroke();
-  ctx.fill();
+function drawBubble(ctx, x, y, w, h, radius) {
+    var r = x + w;
+    var b = y + h;
+    ctx.beginPath();
+    ctx.fillStyle = "#DAA10988";
+    ctx.strokeStyle = "#181812";
+    ctx.lineWidth = "2";
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + radius / 2, y - 10);
+    ctx.lineTo(x + radius * 2, y);
+    ctx.lineTo(r - radius, y);
+    ctx.quadraticCurveTo(r, y, r, y + radius);
+    ctx.lineTo(r, y + h - radius);
+    ctx.quadraticCurveTo(r, b, r - radius, b);
+    ctx.lineTo(x + radius, b);
+    ctx.quadraticCurveTo(x, b, x, b - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.stroke();
+    ctx.fill();
 }
 
-function drawText(textbulle, x, y){
+function drawText(textbulle, x, y) {
     ctx.fillStyle = '#46433D';
     ctx.lineWidth = 1;
     ctx.font = '15px arial';
-    ctx.fillText(textbulle , x, y);
+    ctx.fillText(textbulle, x, y);
 }
 // Creation du personnage
 
@@ -127,18 +126,18 @@ Personnage.prototype.dessinerPersonnage = function (context) {
         this.framejump, this.direction * this.height, // Point d'origine du rectangle source à prendre dans notre image
         this.width, this.height, // Taille du rectangle source (c'est la taille du personnage)
         (this.x * 64) - (this.width / 2) + 32, (this.y * 64) - this.height + 12, // Point de destination (dépend de la taille du personnage)
-        this.width, this.height // Taille du rectangle destination (c'est la taille du personnage)
-         );
-        //   if (this.y + this.vy > canvas.height || this.y + this.vy < 0) {
-        //     this.vy = -this.vy;
-        //   }
-        //   if (this.x + this.vx > canvas.width || this.x + this.vx < 0) {
-        //     this.vx = -this.vx;
-        //   }
+        this.width, this.height) // Taille du rectangle destination (c'est la taille du personnage)
+
+    //   if (this.y + this.vy > canvas.height || this.y + this.vy < 0) {
+    //     this.vy = -this.vy;
+    //   }
+    //   if (this.x + this.vx > canvas.width || this.x + this.vx < 0) {
+    //     this.vx = -this.vx;
+    //   }
 }
 
 // fonction qui permet de recuperer les coordonées du personnage et de les affiché
-Personnage.prototype.localisation = function(){
+Personnage.prototype.localisation = function () {
     var herex = this.x;
     var herey = this.y;
     ctx.strokeStyle = '#00ffff';
@@ -149,20 +148,23 @@ Personnage.prototype.localisation = function(){
     ctx.strokeText(herex, 110, 50);
     ctx.strokeText(herey, 110, 75);
     if (herex === 7 && herey === 6) {
-        drawBubble(ctx, 500,450,220, 60, 10);
-        drawText("Ici les infos pour NorageKart",505,485);
+        drawBubble(ctx, 500, 450, 220, 60, 10);
+        drawText("Ici les infos pour NorageKart", 505, 485);
         this.direction = DIRECTION.BAS;
-    }if (herex === 14 && herey === 6) {
-        drawBubble(ctx, 950,450,220, 60, 10);
-        drawText("Ici les infos pour RushMania",955,485);
+    }
+    if (herex === 14 && herey === 6) {
+        drawBubble(ctx, 950, 450, 220, 60, 10);
+        drawText("Ici les infos pour RushMania", 955, 485);
         this.direction = DIRECTION.BAS;
-    }if (herex === 21 && herey === 6) {
-        drawBubble(ctx, 1450,450,220, 60, 10);
-        drawText("Ici les jeux crée en 2 heures",1455,485);
+    }
+    if (herex === 21 && herey === 6) {
+        drawBubble(ctx, 1450, 450, 220, 60, 10);
+        drawText("Ici les jeux crée en 2 heures", 1455, 485);
         this.direction = DIRECTION.BAS;
-    }if (herex === 28 && herey === 6) {
-        drawBubble(ctx, 1800,450, 220, 60, 10);
-        drawText("Pas la !!!",1800,485);
+    }
+    if (herex === 28 && herey === 6) {
+        drawBubble(ctx, 1800, 450, 220, 60, 10);
+        drawText("Pas la !!!", 1800, 485);
         this.direction = DIRECTION.BAS;
     }
 }
@@ -176,41 +178,56 @@ Personnage.prototype.tick = function () {
 // systeme de deplacement du personnage en fonction des inputes
 Personnage.prototype.deplacement = function () {
     if (deplacementOk) {
-        var angle = NaN;  // en degrés
+        var anglex = NaN; // en degrés
+        var angley = NaN; // en degrés
         if (actions.down) {
-            angle = 90;
+            angley = 90;
             this.direction = DIRECTION.BAS;
-        } if (actions.up) {
-            angle = 270;
+        }
+        if (actions.up) {
+            angley = 270;
             this.direction = DIRECTION.HAUT;
-        } if (actions.right) {
-            angle = 0;
+        }
+        if (actions.right) {
+            anglex = 0;
             this.direction = DIRECTION.DROITE;
-        } if (actions.left) {
-            angle = 180;
+        }
+        if (actions.left) {
+            anglex = 180;
             this.direction = DIRECTION.GAUCHE;
-        } if (!this.isMoving()) {
+        }
+        if (!this.isMoving()) {
             this.framejump = 0;
         }
 
-        if(!isNaN(angle)){
-            var rad = angle * Math.PI / 180.0;
-            this.x = this.x + this.movementSpeed * Math.cos(rad);
-            this.y = this.y + this.movementSpeed * Math.sin(rad);
+        if (!isNaN(anglex)) {
+            var radx = anglex * Math.PI / 180.0;
+            this.x = this.x + this.movementSpeed * Math.cos(radx);
 
             // Si on sort du cadre, on pop de l'autre coté
-            if(this.x < 0){
+            if (this.x < 0) {
                 this.x = canvas.width / 64 + this.x;
-            }if (this.x > canvas.width / 64){
-                this.x = 0;
-            }if (this.y < 0){
-                this.y = canvas.height / 64 + this.y;
-            }if (this.y > canvas.height / 64){
-                this.y = 0 ;
             }
-
-            this.updateMovementAnimation();
+            if (this.x > canvas.width / 64) {
+                this.x = 0;
+            }
         }
+
+        this.updateMovementAnimation();
+    }
+    if (!isNaN(angley)) {
+        var rady = angley * Math.PI / 180.0;
+        this.y = this.y + this.movementSpeed * Math.sin(rady);
+
+        // Si on sort du cadre, on pop de l'autre coté
+        if (this.y < 0) {
+            this.y = canvas.height / 64 + this.y;
+        }
+        if (this.y > canvas.height / 64) {
+            this.y = 0;
+        }
+
+        this.updateMovementAnimation();
     }
 };
 
@@ -251,7 +268,7 @@ var canevas = document.getElementById('canvas');
 var ctx = canevas.getContext('2d');
 var personnages = [];
 
-personnages.push(new Personnage("telechargement.png",basepos.x, basepos.y, DIRECTION.BAS));
+personnages.push(new Personnage("telechargement.png", basepos.x, basepos.y, DIRECTION.BAS));
 // personnages.push(new Personnage("telechargement.png", 1, 1, DIRECTION.BAS));
 
 
