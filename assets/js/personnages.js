@@ -1,93 +1,4 @@
-// On créé un custom Element pour notre navbar, basé sur bootstrap
 
-// class GbNavBar extends HTMLElement {
-//     // Lifecycle hook
-//     connectedCallback() {
-//         this.render();
-//     }
-
-//     // Custom rendering function
-//     render() {
-//         const colorAttr = this.getAttribute("color") || "light";
-//         this.innerHTML =
-//             `
-//                 <nav class="nav flex-column text-center border border-light fixed rounded-right bg-primary">
-//                     <img class="img-nav " src="./img/Avec_Effet.png">
-//                     <div class="border-top m-3"></div>
-//                     <a class="nav-link" href="#"><button class="btn btn-secondary shadow">Accueil</button></a>
-//                     <a class="nav-link" href="#"><button class="btn btn-secondary shadow">Petits projets Stream</button></a>
-//                     <a class="nav-link" href="#"><button class="btn btn-secondary shadow">Norage-Kart Adventure</button></a>
-//                     <a class="nav-link mb-3" href="#"><button class="btn btn-secondary shadow">Contact</button></a>
-//                     <p>Copyright 2019-2022</p>
-//                 </nav>
-//         `;
-//     }
-// }
-
-// customElements.define('gb-navbar', GbNavBar);
-
-// Definition des bouleens pour les direction de deplacement du personnage
-
-var actions = {
-    "up": false,
-    "down": false,
-    "left": false,
-    "right": false,
-    "shoot": false,
-};
-
-// Valeur des direction pour la table des sprite personnages
-
-var DIRECTION = {
-    "HAUT": 8,
-    "GAUCHE": 9,
-    "BAS": 10,
-    "DROITE": 11
-}
-
-var directionSpeed = {
-    x: 100,
-    y: 100,
-    vx: 5,
-    vy: 2,
-}
-
-var basepos = {
-    x: 14.5,
-    y: 2.3
-}
-
-var deplacementOk;
-deplacementOk = true;
-
-function drawBubble(ctx, x, y, w, h, radius) {
-    var r = x + w;
-    var b = y + h;
-    ctx.beginPath();
-    ctx.fillStyle = "#DAA10988";
-    ctx.strokeStyle = "#181812";
-    ctx.lineWidth = "2";
-    ctx.moveTo(x + radius, y);
-    ctx.lineTo(x + radius / 2, y - 10);
-    ctx.lineTo(x + radius * 2, y);
-    ctx.lineTo(r - radius, y);
-    ctx.quadraticCurveTo(r, y, r, y + radius);
-    ctx.lineTo(r, y + h - radius);
-    ctx.quadraticCurveTo(r, b, r - radius, b);
-    ctx.lineTo(x + radius, b);
-    ctx.quadraticCurveTo(x, b, x, b - radius);
-    ctx.lineTo(x, y + radius);
-    ctx.quadraticCurveTo(x, y, x + radius, y);
-    ctx.stroke();
-    ctx.fill();
-}
-
-function drawText(textbulle, x, y) {
-    ctx.fillStyle = '#46433D';
-    ctx.lineWidth = 1;
-    ctx.font = '15px arial';
-    ctx.fillText(textbulle, x, y);
-}
 // Creation du personnage
 
 function Personnage(pictureFileName, x, y, direction) {
@@ -105,7 +16,7 @@ function Personnage(pictureFileName, x, y, direction) {
 
         // Taille du personnage
         this.referenceDuPerso.width = this.width / 13;
-        this.referenceDuPerso.height = this.height / 21;
+        this.referenceDuPerso.height = this.height / 20.7; // il y a une erreur dans la table des sprite donc le 20,7 a la place de 21 est pour corriger se probleme
     }
     // lien sur l'image
     this.image.src = ASSETS_PATH + pictureFileName;
@@ -115,7 +26,7 @@ function Personnage(pictureFileName, x, y, direction) {
     this.keyFrame = 0;
     this.framesPerKeyFrame = 7;
     this.animatedFrames = 0;
-    this.movementSpeed = 0.09;
+    this.movementSpeed = 0.032;
     // this.movementSpeed = 0 + this.x + this.y ;
     // this.movementSpeed = directionSpeed;
 }
@@ -178,7 +89,11 @@ Personnage.prototype.tick = function () {
 // systeme de deplacement du personnage en fonction des inputes
 Personnage.prototype.deplacement = function () {
     if (deplacementOk) {
-        var anglex = NaN; // en degrés
+        if (this.y === canvas.height / 2 && scrollok === true) {
+            deplacementOk = false;
+            this.updateMovementAnimation();
+        } else
+            var anglex = NaN; // en degrés
         var angley = NaN; // en degrés
         if (actions.down) {
             angley = 90;
@@ -213,7 +128,7 @@ Personnage.prototype.deplacement = function () {
             }
         }
 
-        this.updateMovementAnimation();
+        // this.updateMovementAnimation();
     }
     if (!isNaN(angley)) {
         var rady = angley * Math.PI / 180.0;
@@ -227,9 +142,10 @@ Personnage.prototype.deplacement = function () {
             this.y = 0;
         }
 
-        this.updateMovementAnimation();
+        // this.updateMovementAnimation();
     }
-};
+    this.updateMovementAnimation();
+}
 
 Personnage.prototype.actionsInGame = function () {
     if (actions.shoot) {
@@ -257,73 +173,3 @@ Personnage.prototype.updateMovementAnimation = function () {
         this.animatedFrames = 0;
     }
 };
-
-var canvasSize = {
-    x: document.body.scrollHeight,
-    y: document.body.scrollWidth
-};
-// dans votre HTML, cet élément apparaît comme <canvas id="monCanevas"></canvas>
-var canevas = document.getElementById('canvas');
-
-var ctx = canevas.getContext('2d');
-var personnages = [];
-
-personnages.push(new Personnage("telechargement.png", basepos.x, basepos.y, DIRECTION.BAS));
-// personnages.push(new Personnage("telechargement.png", 1, 1, DIRECTION.BAS));
-
-
-function clear() {
-    ctx.clearRect(0, 0, canvasSize.x, canvasSize.y);
-};
-
-function tick() {
-    clear();
-
-    for (const perso of personnages) {
-        perso.tick();
-        perso.dessinerPersonnage(ctx);
-    }
-};
-
-
-function updateCycle() {
-    tick();
-
-    requestAnimationFrame(() => {
-        updateCycle();
-    });
-}
-updateCycle();
-
-
-document.addEventListener("keydown", (evt) => {
-    evt.preventDefault();
-
-    if (evt.key === "ArrowDown") {
-        actions.down = true;
-    } else if (evt.key === "ArrowUp") {
-        actions.up = true;
-    } else if (evt.key === "ArrowLeft") {
-        actions.left = true;
-    } else if (evt.key === "ArrowRight") {
-        actions.right = true;
-    } else if (evt.key === "Control") {
-        actions.shoot = true;
-        deplacementOk = false;
-    }
-});
-
-document.addEventListener("keyup", (evt) => {
-    if (evt.key === "ArrowDown") {
-        actions.down = false;
-    } else if (evt.key === "ArrowUp") {
-        actions.up = false;
-    } else if (evt.key === "ArrowLeft") {
-        actions.left = false;
-    } else if (evt.key === "ArrowRight") {
-        actions.right = false;
-    } else if (evt.key === "Control") {
-        actions.shoot = false;
-        deplacementOk = true;
-    }
-});
