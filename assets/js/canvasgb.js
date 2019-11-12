@@ -26,10 +26,16 @@
 
 // customElements.define('gb-navbar', GbNavBar);
 
-var canvasSize = {
+const canvasSize = {
     x: document.body.scrollHeight,
     y: document.body.scrollWidth
 };
+
+window.addEventListener('resize', () => {
+    canvasSize.x = document.body.scrollHeight;
+    canvasSize.y = document.body.scrollWidth;
+})
+
 // dans votre HTML, cet élément apparaît comme <canvas id="monCanevas"></canvas>
 var canevas = document.getElementById('canvas');
 
@@ -88,6 +94,8 @@ document.addEventListener("keydown", (evt) => {
     } else if (evt.key === "Control") {
         actions.shoot = true;
         deplacementOk = false;
+    }else if (evt.key === "Shift") {
+        actions.sprint = true;
     }
 });
 
@@ -103,5 +111,7 @@ document.addEventListener("keyup", (evt) => {
     } else if (evt.key === "Control") {
         actions.shoot = false;
         deplacementOk = true;
+    }else if (evt.key === "Shift") {
+        actions.sprint = false;
     }
 });

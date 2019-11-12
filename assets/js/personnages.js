@@ -1,5 +1,6 @@
-
 // Creation du personnage
+
+const zoomRatio = 64;
 
 function Personnage(pictureFileName, x, y, direction) {
     this.x = x; // (en cases)
@@ -26,17 +27,19 @@ function Personnage(pictureFileName, x, y, direction) {
     this.keyFrame = 0;
     this.framesPerKeyFrame = 7;
     this.animatedFrames = 0;
-    this.movementSpeed = 0.032;
     // this.movementSpeed = 0 + this.x + this.y ;
     // this.movementSpeed = directionSpeed;
 }
+
+var herex = this.x;
+var herey = this.y;
 
 Personnage.prototype.dessinerPersonnage = function (context) {
     context.drawImage(
         this.image,
         this.framejump, this.direction * this.height, // Point d'origine du rectangle source à prendre dans notre image
         this.width, this.height, // Taille du rectangle source (c'est la taille du personnage)
-        (this.x * 64) - (this.width / 2) + 32, (this.y * 64) - this.height + 12, // Point de destination (dépend de la taille du personnage)
+        (this.x * zoomRatio) - (this.width / 2) + zoomRatio / 2, (this.y * zoomRatio) - this.height + zoomRatio / 4, // Point de destination (dépend de la taille du personnage)
         this.width, this.height) // Taille du rectangle destination (c'est la taille du personnage)
 
     //   if (this.y + this.vy > canvas.height || this.y + this.vy < 0) {
@@ -84,16 +87,13 @@ Personnage.prototype.localisation = function () {
 Personnage.prototype.tick = function () {
     this.deplacement();
     this.localisation();
+    this.Sprint();
     this.actionsInGame();
 }
 // systeme de deplacement du personnage en fonction des inputes
 Personnage.prototype.deplacement = function () {
     if (deplacementOk) {
-        if (this.y === canvas.height / 2 && scrollok === true) {
-            deplacementOk = false;
-            this.updateMovementAnimation();
-        } else
-            var anglex = NaN; // en degrés
+        var anglex = NaN; // en degrés
         var angley = NaN; // en degrés
         if (actions.down) {
             angley = 90;
@@ -121,9 +121,9 @@ Personnage.prototype.deplacement = function () {
 
             // Si on sort du cadre, on pop de l'autre coté
             if (this.x < 0) {
-                this.x = canvas.width / 64 + this.x;
+                this.x = canvas.width / zoomRatio + this.x;
             }
-            if (this.x > canvas.width / 64) {
+            if (this.x > canvas.width / zoomRatio) {
                 this.x = 0;
             }
         }
@@ -136,9 +136,9 @@ Personnage.prototype.deplacement = function () {
 
         // Si on sort du cadre, on pop de l'autre coté
         if (this.y < 0) {
-            this.y = canvas.height / 64 + this.y;
+            this.y = canvas.height / zoomRatio + this.y;
         }
-        if (this.y > canvas.height / 64) {
+        if (this.y > canvas.height / zoomRatio) {
             this.y = 0;
         }
 
@@ -165,7 +165,7 @@ Personnage.prototype.isMoving = function () {
 Personnage.prototype.updateMovementAnimation = function () {
     if (!this.isMoving()) return;
 
-    this.framejump = 64 * (this.keyFrame % 9);
+    this.framejump = zoomRatio * (this.keyFrame % 9);
 
     ++this.animatedFrames;
     if (this.animatedFrames == this.framesPerKeyFrame) {
@@ -173,3 +173,29 @@ Personnage.prototype.updateMovementAnimation = function () {
         this.animatedFrames = 0;
     }
 };
+
+Personnage.prototype.BlockscreenAndScroll = function () {
+    if (fEq(herey * zoomRatio, canvas.height / 2)) {
+        drawBubble(ctx, 1800, 450, 220, 60, 10);
+        drawText("Gnia", 1800, 485);
+        this.updateMovementAnimation();
+    }
+}
+
+Personnage.prototype.Sprint = function () {
+    if (actions.sprint){
+        this.movementSpeed = 0.080;
+        this.updateMovementAnimation();
+    }
+    else {
+        this.movementSpeed = 0.032;
+    }
+}
+
+// Answers areFloatsEqual ?
+function fEq(float1, float2) {
+    //return float1 == float2; // Pb: erreurs d'approximations
+
+    const tolerance = 1; // threshold
+    return Math.abs(float1 - float2) < tolerance;
+}
