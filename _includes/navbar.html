@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark bg-dark rounded-bottom">
-    <a class="navbar-brand" href="{{"./index.html" | relative_url}}">NORAGE</a>
+    <a class="navbar-brand d-none d-sm-block" href="{{"./index.html" | relative_url}}">NORAGE</a>
     {% for files in site.articles %}
     <a class="btn btn-primary" href="{{ files.url | relative_url }}">{{ files.title | escape }}</a>
     {% endfor %}

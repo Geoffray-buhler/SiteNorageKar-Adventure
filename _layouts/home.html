@@ -26,7 +26,7 @@ layout : default
     <div class="row">
         {% for files in site.game %}
         <div class="col-12 col-md-6 p-2 inline text-center">
-            <div class="card zoom card-container shadow">
+            <div class="card zoom shadow">
                 <img src={{ "./assets/img/" | append: files.title | append: ".png" | relative_url }} alt="image"
                     class="m-2 img-card">
                 <div class="card-body">

@@ -31,11 +31,6 @@ const canvasSize = {
     y: document.body.scrollWidth
 };
 
-window.addEventListener('resize', () => {
-    canvasSize.x = document.body.scrollHeight;
-    canvasSize.y = document.body.scrollWidth;
-})
-
 // dans votre HTML, cet élément apparaît comme <canvas id="monCanevas"></canvas>
 var canevas = document.getElementById('canvas');
 
@@ -69,49 +64,55 @@ function updateCycle() {
 }
 updateCycle();
 
-function scrollok()
-{
+function scrollok() {
     let scrollTop = document.documentElement.scrollTop;
-    if(scrollTop > 0){
+    if (scrollTop > 0) {
         scrollBy(0, -5);
-        setTimeout(scrollok,5 );
+        setTimeout(scrollok, 5);
     }
     return true;
 }
 
-
 document.addEventListener("keydown", (evt) => {
     evt.preventDefault();
 
-    if (evt.key === "ArrowDown") {
+    if (evt.key == "ArrowDown") {
         actions.down = true;
-    } else if (evt.key === "ArrowUp") {
+    } else if (evt.key == "ArrowUp") {
         actions.up = true;
-    } else if (evt.key === "ArrowLeft") {
+    } else if (evt.key == "ArrowLeft") {
         actions.left = true;
-    } else if (evt.key === "ArrowRight") {
+    } else if (evt.key == "ArrowRight") {
         actions.right = true;
-    } else if (evt.key === "Control") {
+    } else if (evt.key == "Control") {
         actions.shoot = true;
         deplacementOk = false;
-    }else if (evt.key === "Shift") {
+    } else if (evt.key == "Shift") {
         actions.sprint = true;
     }
 });
 
 document.addEventListener("keyup", (evt) => {
-    if (evt.key === "ArrowDown") {
+    if (evt.key == "ArrowDown") {
         actions.down = false;
-    } else if (evt.key === "ArrowUp") {
+    } else if (evt.key == "ArrowUp") {
         actions.up = false;
-    } else if (evt.key === "ArrowLeft") {
+    } else if (evt.key == "ArrowLeft") {
         actions.left = false;
-    } else if (evt.key === "ArrowRight") {
+    } else if (evt.key == "ArrowRight") {
         actions.right = false;
-    } else if (evt.key === "Control") {
+    } else if (evt.key == "Control") {
         actions.shoot = false;
         deplacementOk = true;
-    }else if (evt.key === "Shift") {
+    } else if (evt.key == "Shift") {
         actions.sprint = false;
     }
 });
+
+//Permet de reinitialisé la taille de canvas apres un resize
+
+window.addEventListener('resize', () => {
+    canvasSize.x = document.body.scrollHeight;
+    canvasSize.y = document.body.scrollWidth;
+    clear();
+})
