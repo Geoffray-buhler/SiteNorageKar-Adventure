@@ -26,10 +26,10 @@ const directionSpeed = {
 };
 
 const basepos = {
-    x:7,
-    y:6
-    // x: 14.5,
-    // y: 2.3
+    // x:7,
+    // y:6
+    x: 14.5,
+    y: 2.3
 };
 
 var deplacementOk;

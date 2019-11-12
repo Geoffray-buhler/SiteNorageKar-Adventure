@@ -59,8 +59,8 @@ Personnage.prototype.localisation = function () {
     ctx.font = '20px arial';
     herex = Math.trunc(herex)
     herey = Math.trunc(herey)
-    ctx.strokeText(herex, 110, 50);
-    ctx.strokeText(herey, 110, 75);
+    // ctx.strokeText(herex, 110, 50);
+    // ctx.strokeText(herey, 110, 75);
     if (herex === 7 && herey === 6) {
         drawBubble(ctx, 500, 450, 220, 60, 10);
         drawText("Ici les infos pour NorageKart", 505, 485);
