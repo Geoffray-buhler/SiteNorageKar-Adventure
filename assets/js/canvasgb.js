@@ -36,8 +36,8 @@ function animatePage() {
     otherPage.classList.add("switcher");
     currentPage.classList.add("switcherBack");
     currentPage.classList.remove("switcher");
-    setTimeout(currentPage.classList.add("d-none"), 3000);
-    setTimeout(otherPage.classList.remove("d-none"), 3000);
+    setTimeout(currentPage.classList.toggle("d-none"), 3000);
+    setTimeout(otherPage.classList.toggle("d-none"), 3000);
 }
 
 //fonction qui permet de nettoyé le canvas
