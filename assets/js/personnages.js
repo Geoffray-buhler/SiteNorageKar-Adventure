@@ -78,9 +78,6 @@ Personnage.prototype.localisation = function () {
             drawText("Pas la !!!", 1800, 485);
             this.direction = DIRECTION.BAS;
         }
-        if (herey === 7) {
-            deplacementOk = false;
-        }
     }
 }
 // fonction pour lancer des actions tout les ticks 60 ticks par seconde
