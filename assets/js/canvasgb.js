@@ -99,7 +99,6 @@ document.addEventListener("keyup", (evt) => {
     } else if (evt.key == "Shift") {
         actions.sprint = false;
     }
-    console.log(actionSum);
 });
 
 //Permet de reinitialisé la taille de canvas apres un resize

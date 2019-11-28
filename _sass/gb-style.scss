@@ -191,6 +191,7 @@ header {
     transition-property: opacity;
     transition-duration: 2s;
     position: absolute;
+    pointer-events:none;
 }
 
 @media (pointer: coarse) and (hover: none) {
