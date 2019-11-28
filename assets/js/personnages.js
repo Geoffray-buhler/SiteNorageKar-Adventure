@@ -147,21 +147,6 @@ Personnage.prototype.deplacement = function () {
             }
         }
     }
-    console.log(actionSum);
-    console.log(actionSum);
-    console.log(actionSum);
-    console.log(actionSum);
-    console.log(actionSum);
-    console.log(actionSum);
-    console.log(actionSum);
-    console.log(actionSum);
-    console.log(actionSum);
-    console.log(actionSum);
-    console.log(actionSum);
-    console.log(actionSum);
-    console.log(actionSum);
-    console.log(actionSum);
-    console.log(actionSum);
     this.updateMovementAnimation();
 }
 //function qui permet de lancer l'animation lors de l'appuis CTRL
