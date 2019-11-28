@@ -8,8 +8,24 @@ const actions = {
     "shoot": false,
     "sprint": false
 };
+//valeur de chaque action
+var actionSum = 0;
 
-// Valeur des direction pour la table des sprite personnages
+const actionValue = {
+    "down": 10,
+    "up": 100,
+    "left": 1000,
+    "right": 10000
+};
+
+var actionAngleToValue = {
+    10: 90,
+    100: 270,
+    1000: 180,
+    10000: 0
+};
+
+// Valeur des direction pour la table des sprite personnage
 
 const DIRECTION = {
     "HAUT": 8,
@@ -18,6 +34,8 @@ const DIRECTION = {
     "DROITE": 11
 };
 
+// Valeur de la vitesse de deplacement du personnage
+
 const directionSpeed = {
     x: 100,
     y: 100,
@@ -25,12 +43,42 @@ const directionSpeed = {
     vy: 2,
 };
 
+// Position de base du personnage
+
 const basepos = {
-    // x:7,
-    // y:6
     x: 14.5,
     y: 2.3
 };
 
-var deplacementOk;
-deplacementOk = true;
+// Taille du canvas
+
+const screenSize = {
+    x: window.innerHeight,
+    y: window.innerWidth
+};
+
+const canvasSize = {
+    x: document.body.scrollHeight,
+    y: document.body.scrollWidth
+};
+
+// Ratio de Zoom du personnage
+const zoomRatio = 64;
+
+// Valeu par default de deplacementOk
+
+var deplacementOk = {
+    up: true,
+    down: true,
+    right: true,
+    left: true
+}
+
+var life = 100;
+
+var stamina = 100;
+
+var canChange = true;
+
+var currentPage = document.getElementById("page01");
+var otherPage = document.getElementById("page02");

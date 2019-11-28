@@ -1,7 +1,5 @@
 // Creation du personnage
 
-const zoomRatio = 64;
-
 function Personnage(pictureFileName, x, y, direction) {
     this.x = x; // (en cases)
     this.y = y; // (en cases)
@@ -27,8 +25,6 @@ function Personnage(pictureFileName, x, y, direction) {
     this.keyFrame = 0;
     this.framesPerKeyFrame = 7;
     this.animatedFrames = 0;
-    // this.movementSpeed = 0 + this.x + this.y ;
-    // this.movementSpeed = directionSpeed;
 }
 
 var herex = this.x;
@@ -41,13 +37,6 @@ Personnage.prototype.dessinerPersonnage = function (context) {
         this.width, this.height, // Taille du rectangle source (c'est la taille du personnage)
         (this.x * zoomRatio) - (this.width / 2) + zoomRatio / 2, (this.y * zoomRatio) - this.height + zoomRatio / 4, // Point de destination (dépend de la taille du personnage)
         this.width, this.height) // Taille du rectangle destination (c'est la taille du personnage)
-
-    //   if (this.y + this.vy > canvas.height || this.y + this.vy < 0) {
-    //     this.vy = -this.vy;
-    //   }
-    //   if (this.x + this.vx > canvas.width || this.x + this.vx < 0) {
-    //     this.vx = -this.vx;
-    //   }
 }
 
 // fonction qui permet de recuperer les coordonées du personnage et de les affiché
@@ -59,30 +48,41 @@ Personnage.prototype.localisation = function () {
     ctx.font = '20px arial';
     herex = Math.trunc(herex)
     herey = Math.trunc(herey)
-    // ctx.strokeText(herex, 110, 50);
-    // ctx.strokeText(herey, 110, 75);
-    if (herex === 7 && herey === 6) {
-        drawBubble(ctx, 500, 450, 220, 60, 10);
-        drawText("Ici les infos pour NorageKart", 505, 485);
-        this.direction = DIRECTION.BAS;
+    //ctx.strokeText(herex, 110, 50);
+    //ctx.strokeText(herey, 110, 75);
+    if (herex === 0 && herey === 0 && canChange) {
+        switchpage();
+        animatePage()
+        canChange = false;
+    } else if (herex != 0 && herey != 0) {
+        canChange = true;
     }
-    if (herex === 14 && herey === 6) {
-        drawBubble(ctx, 950, 450, 220, 60, 10);
-        drawText("Ici les infos pour RushMania", 955, 485);
-        this.direction = DIRECTION.BAS;
-    }
-    if (herex === 21 && herey === 6) {
-        drawBubble(ctx, 1450, 450, 220, 60, 10);
-        drawText("Ici les jeux crée en 2 heures", 1455, 485);
-        this.direction = DIRECTION.BAS;
-    }
-    if (herex === 28 && herey === 6) {
-        drawBubble(ctx, 1800, 450, 220, 60, 10);
-        drawText("Pas la !!!", 1800, 485);
-        this.direction = DIRECTION.BAS;
+    if (!switchOk) {
+        if (herex === 7 && herey === 6) {
+            drawBubble(ctx, 500, 450, 220, 60, 10);
+            drawText("Ici les infos pour NorageKart", 505, 485);
+            this.direction = DIRECTION.BAS;
+        }
+        if (herex === 14 && herey === 6) {
+            drawBubble(ctx, 950, 450, 220, 60, 10);
+            drawText("Ici les infos pour RushMania", 955, 485);
+            this.direction = DIRECTION.BAS;
+        }
+        if (herex === 21 && herey === 6) {
+            drawBubble(ctx, 1450, 450, 220, 60, 10);
+            drawText("Ici les jeux crée en 2 heures", 1455, 485);
+            this.direction = DIRECTION.BAS;
+        }
+        if (herex === 28 && herey === 6) {
+            drawBubble(ctx, 1800, 450, 220, 60, 10);
+            drawText("Pas la !!!", 1800, 485);
+            this.direction = DIRECTION.BAS;
+        }
+        if (herey === 7) {
+            deplacementOk = false;
+        }
     }
 }
-
 // fonction pour lancer des actions tout les ticks 60 ticks par seconde
 Personnage.prototype.tick = function () {
     this.deplacement();
@@ -90,63 +90,67 @@ Personnage.prototype.tick = function () {
     this.Sprint();
     this.actionsInGame();
 }
-// systeme de deplacement du personnage en fonction des inputes
+// systeme de deplacement du personnage en fonction des inputs
 Personnage.prototype.deplacement = function () {
+    var actionsSum = 0;
     if (deplacementOk) {
         var anglex = NaN; // en degrés
         var angley = NaN; // en degrés
         if (actions.down) {
             angley = 90;
             this.direction = DIRECTION.BAS;
+            actionSum = actionSum + actionValue.down;
         }
         if (actions.up) {
             angley = 270;
             this.direction = DIRECTION.HAUT;
+            actionSum = actionSum + actionValue.up;
         }
         if (actions.right) {
             anglex = 0;
             this.direction = DIRECTION.DROITE;
+            actionSum = actionSum + actionValue.right;
         }
         if (actions.left) {
             anglex = 180;
             this.direction = DIRECTION.GAUCHE;
+            actionSum = actionSum + actionValue.left;
         }
         if (!this.isMoving()) {
             this.framejump = 0;
         }
-
+        // gestion de la diagonal en plus des direction de déplacements
         if (!isNaN(anglex)) {
             var radx = anglex * Math.PI / 180.0;
             this.x = this.x + this.movementSpeed * Math.cos(radx);
-
-            // Si on sort du cadre, on pop de l'autre coté
-            if (this.x < 0) {
-                this.x = canvas.width / zoomRatio + this.x;
+            if (switchOk == false) {
+                // Si on sort du cadre, on pop de l'autre coté
+                if (this.x < 0) {
+                    this.x = canvas.width / zoomRatio + this.x;
+                }
+                if (this.x > canvas.width / zoomRatio) {
+                    this.x = 0;
+                }
             }
-            if (this.x > canvas.width / zoomRatio) {
-                this.x = 0;
+        }
+        if (!isNaN(angley)) {
+            var rady = angley * Math.PI / 180.0;
+            this.y = this.y + this.movementSpeed * Math.sin(rady);
+            if (switchOk == false) {
+                // Si on sort du cadre, on pop de l'autre coté
+                if (this.y < 0) {
+                    this.y = canvas.height / zoomRatio + this.y;
+                }
+                if (this.y > canvas.height / zoomRatio) {
+                    this.y = 0;
+                }
             }
         }
-
-        // this.updateMovementAnimation();
     }
-    if (!isNaN(angley)) {
-        var rady = angley * Math.PI / 180.0;
-        this.y = this.y + this.movementSpeed * Math.sin(rady);
-
-        // Si on sort du cadre, on pop de l'autre coté
-        if (this.y < 0) {
-            this.y = canvas.height / zoomRatio + this.y;
-        }
-        if (this.y > canvas.height / zoomRatio) {
-            this.y = 0;
-        }
-
-        // this.updateMovementAnimation();
-    }
+    console.log(actionSum);
     this.updateMovementAnimation();
 }
-
+//function qui permet de lancer l'animation lors de l'appuis CTRL
 Personnage.prototype.actionsInGame = function () {
     if (actions.shoot) {
         let directionAtThisMoments = this.direction;
@@ -154,14 +158,11 @@ Personnage.prototype.actionsInGame = function () {
         this.updateMovementAnimation();
     }
 };
-
 // fonction qui permet de verifier si le personnage bouge 
-
 Personnage.prototype.isMoving = function () {
-    // return !(!actions.left && !actions.up && !actions.right && !actions.down);
-    return actions.left || actions.up || actions.right || actions.down || actions.shoot;
+    return actions.left || actions.up || actions.right || actions.down;
 };
-
+//permet de mettre a jour l'animation du personnage 
 Personnage.prototype.updateMovementAnimation = function () {
     if (!this.isMoving()) return;
 
@@ -173,21 +174,12 @@ Personnage.prototype.updateMovementAnimation = function () {
         this.animatedFrames = 0;
     }
 };
-
-Personnage.prototype.BlockscreenAndScroll = function () {
-    if (fEq(herey * zoomRatio, canvas.height / 2)) {
-        drawBubble(ctx, 1800, 450, 220, 60, 10);
-        drawText("Gnia", 1800, 485);
-        this.updateMovementAnimation();
-    }
-}
-
+//permet de modifier la vitesse de deplacement du personnage
 Personnage.prototype.Sprint = function () {
-    if (actions.sprint){
+    if (actions.sprint) {
         this.movementSpeed = 0.080;
         this.updateMovementAnimation();
-    }
-    else {
+    } else {
         this.movementSpeed = 0.032;
     }
 }

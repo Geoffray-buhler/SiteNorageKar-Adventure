@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -24,12 +24,17 @@
     <link rel="apple-touch-icon" sizes="152x152" href="{{"./assets/icons/apple-icon-152x152.png" | relative_url }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{"./assets/icons/apple-icon-180x180.png" | relative_url }}">
     <link rel="icon" type="image/png" sizes="192x192"  href="{{"./assets/icons/android-icon-192x192.png" | relative_url }}">
-    <!-- <link rel="manifest" href="{{"./assets/icons/manifest.json" | relative_url }}"> -->
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{"./assets/icons/ms-icon-144x144.png" | relative_url }}">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href={{ "./assets/css/style.css" | relative_url }}>
     <link rel="stylesheet" href={{ "./assets/css/bootstrap.css" | relative_url }}>
-    <link rel="manifest" href="{{"./manifest.json" | relative_url }}">
-    <title>Norage-Kart</title>
+    <link rel="manifest" href={{"./manifest.json" | relative_url }}>
+    <title>
+        {% if page.title == "" %}
+            {% assign page.title = Norage-Kart %}
+        {% else %}
+            {{ page.title }}
+        {% endif %}
+    </title>
 </head>

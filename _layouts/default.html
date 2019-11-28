@@ -1,31 +1,34 @@
 {% include head.html %}
 
-<body>
-  {% include canvas.html %}
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      {% include header.html %}
-    </div>
-    <div class="col-12">
-      {% include navbar.html %}
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      {{ content }}
-    </div>
-  </div>
-</div>
-<div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        {% include footer.html %}
-      </div>
-    </div>
-  </div>
-</body>
-
+    <body>
+        {% include canvas.html %}
+        <div id="page01" class="switcher">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        {% include header.html %}
+                    </div>
+                    <div class="col-12">
+                        {% include navbar.html %}
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        {{ content }}
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        {% include footer.html %}
+                    </div>
+                </div>
+            </div>
+            {% include java.html %}
+        </div>
+        {% include page02.html %}
+    </body>
 </html>

@@ -1,11 +1,17 @@
-$colors: (primary: blue,
+$colors: (
+    primary: blue,
     secondary: grey,
     background: #50505028,
     fontbtn: #16fb62,
-    border:#dee2e6);
+    border: #dee2e6
+);
 
 @function color($name) {
     @return map-get($colors, $name);
+}
+
+body {
+    background:#50505028
 }
 
 .bg {
@@ -60,23 +66,61 @@ $colors: (primary: blue,
 
 .attachment {
     &-full {
-        z-index: 4;
+        z-index: 120;
         position: absolute !important;
     }
 }
 
 canvas {
     position: absolute;
-    z-index: 50000000000;
+    z-index: 100;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    display: none;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    z-index: 6;
 }
 
 .canvas {
     width: 100%;
     height: 100%;
+}
+
+#myLifeContainer {
+    width: 20vw;
+    height: 30px;
+    background-color: #808080;
+    z-index: 600;
+}
+
+#myLife {
+    width: 20vw;
+    height: 30px;
+    background-color: #02891e;
+    text-align: center; /* To center it horizontally (if you want) */
+    line-height: 30px; /* To center it vertically */
+    color: white;
+    z-index: 700;
+}
+
+#myStaminaContainer {
+    width: 20vw;
+    height: 10px;
+    background-color: #808080;
+    z-index: 600;
+}
+
+#myStamina {
+    width: 20vw;
+    height: 10px;
+    background-color: #ff6a00;
+    text-align: center; /* To center it horizontally (if you want) */
+    line-height: 30px; /* To center it vertically */
+    color: white;
+    z-index: 700;
 }
 
 header {
@@ -117,6 +161,36 @@ header {
         opacity: 0.2;
         z-index: 1;
     }
+}
+
+#page02 {
+
+    .mapmonde {
+        height: 100vh;
+        width: 100vw;
+    }
+}
+
+.switcher {
+    z-index:1000;
+    opacity:1;
+    left:0;
+    top:0;
+    bottom:0;
+    right:0;
+    transition-property: opacity;
+    transition-duration: 2s;
+}
+
+.switcherBack {
+    opacity: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    transition-property: opacity;
+    transition-duration: 2s;
+    position: absolute;
 }
 
 @media (pointer: coarse) and (hover: none) {
