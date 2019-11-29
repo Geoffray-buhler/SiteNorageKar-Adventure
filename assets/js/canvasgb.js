@@ -32,22 +32,10 @@ function CurrentPage() {
 
 //fonction d'animations
 function animatePage() {
-    removenone()
     otherPage.classList.remove("switcherBack");
     otherPage.classList.add("switcher");
     currentPage.classList.add("switcherBack");
     currentPage.classList.remove("switcher");
-    setTimeout(addnone, 2000);
-
-}
-
-//fonction ajout du d-none
-function addnone() {
-    currentPage.classList.add("d-none");
-}
-
-function removenone() {
-    otherPage.classList.remove("d-none");
 }
 
 //fonction qui permet de nettoyé le canvas

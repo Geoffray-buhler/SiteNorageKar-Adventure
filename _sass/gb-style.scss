@@ -192,6 +192,7 @@ header {
     transition-duration: 2s;
     position: absolute;
     pointer-events:none;
+    overflow:hidden;
 }
 
 @media (pointer: coarse) and (hover: none) {
