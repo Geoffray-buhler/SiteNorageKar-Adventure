@@ -50,7 +50,7 @@ Personnage.prototype.localisation = function () {
     herey = Math.trunc(herey)
     //ctx.strokeText(herex, 110, 50);
     //ctx.strokeText(herey, 110, 75);
-    if (herex === 0 && herey === 0 && canChange) {
+    if (herex === 0 && herey === 6 && canChange) {
         switchpage();
         animatePage()
         canChange = false;
@@ -86,6 +86,7 @@ Personnage.prototype.tick = function () {
     this.localisation();
     this.Sprint();
     this.actionsInGame();
+    //setInterval(this.staminaSystem(), 250);
 }
 // systeme de deplacement du personnage en fonction des inputs
 Personnage.prototype.deplacement = function () {
@@ -146,6 +147,7 @@ Personnage.prototype.deplacement = function () {
     }
     this.updateMovementAnimation();
 }
+
 //function qui permet de lancer l'animation lors de l'appuis CTRL
 Personnage.prototype.actionsInGame = function () {
     if (actions.shoot) {
@@ -172,11 +174,23 @@ Personnage.prototype.updateMovementAnimation = function () {
 };
 //permet de modifier la vitesse de deplacement du personnage
 Personnage.prototype.Sprint = function () {
-    if (actions.sprint) {
+    if (actions.sprint && stamina != 0) {
         this.movementSpeed = 0.080;
         this.updateMovementAnimation();
     } else {
         this.movementSpeed = 0.032;
+    }
+}
+
+Personnage.prototype.staminaSystem = function () {
+    if (actions.sprint && this.isMoving()) {
+        while (stamina > 0) {
+            stamina--;
+        }
+    } else {
+        while (stamina < 100000) {
+            stamina++;
+        }
     }
 }
 
