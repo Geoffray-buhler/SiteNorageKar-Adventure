@@ -76,7 +76,7 @@ var deplacementOk = {
 
 var life = 100;
 
-var stamina = 100;
+var stamina = 100000;
 
 var canChange = true;
 

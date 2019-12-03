@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Geoffray-buhler/SiteNorageKar-Adventure/issues"
   },
-  "homepage": "https://github.com/Geoffray-buhler/SiteNorageKar-Adventure#readme"
+  "homepage": "https://github.com/Geoffray-buhler/SiteNorageKar-Adventure#readme",
+  "dependencies": {
+    "bootstrap": "^4.4.1"
+  }
 }
