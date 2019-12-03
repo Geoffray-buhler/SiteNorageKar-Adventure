@@ -1,3 +1,4 @@
 .jekyll-cache
 .vs
 _site
+node_modules
