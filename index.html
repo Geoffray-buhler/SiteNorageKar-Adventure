@@ -36,7 +36,8 @@
     </title>
 </head>
 
-    <body class="bg-background">
+<body>
+    <div class="bg-background">
         <canvas id="canvas" height="888" width="1920" class="d-lg-block">Votre navigateur ne supporte pas HTML5, veuillez le
         mettre à jour pour jouer.</canvas>
         <div id="page01" class="switcher">
@@ -252,20 +253,44 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </div>
-        <div id="page02" class="switcherBack">
-    <div class="position-fixed m-5">
-        <div id="myLifeContainer" class="rounded-pill">
-            <div id="myLife" class="rounded-pill">
-                Vie : <span id="LifeValue">100%</span>
+        <div id="page02" class="switcherBack d-none d-xl-flex">
+    <div class="container-fluid position-fixed vw-100 vh-100">
+        <div class="row">
+            <div class="clo-4 m-5">
+                <div id="myLifeContainer" class="rounded-pill">
+                    <div id="myLife" class="rounded-pill">
+                        <span id="lifeValue">100%</span>
+                    </div>
+                </div>
+                <div id="myStaminaContainer" class="mb-1 rounded-pill">
+                    <div id="myStamina" class="rounded-pill">
+                        <span id="staminaValue">100%</span>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div id="myStaminaContainer" class="rounded-pill">
-            <div id="myStamina" class="rounded-pill">
-                Endurance : <span id="LifeValue">100%</span>
+            <div class="col-4">
+            </div>
+            <div class="col-4 m-5 d-flex justify-content-end">
+                <div id="myManaContainer" class="rounded-pill">
+                    <div id="myMana" class="rounded-pill">
+                        <span id="manaValue">100%</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <img class="mapmonde" src="./assets/img/marcel-hampel-grassland-boss.jpg" />
+    <img class="mapmonde" src="./assets/img/map/marcel-hampel-grassland-boss.jpg" />
 </div>
-    </body>
+        <div id="gameOver" class="switcherBack">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 my-auto mx-auto">
+                <button>Quittez</button>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</body>
+
 </html>

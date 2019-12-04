@@ -1,15 +1,18 @@
-//Recuper le Canvas du HTML
+//Recuper le Canvas du HTML.
 var canevas = document.getElementById('canvas');
 
 var ctx = canevas.getContext('2d');
 
 var personnages = [];
 
+var projectiles = [];
+
 var switchOk = false;
 
 personnages.push(new Personnage("telechargement.png", basepos.x, basepos.y, DIRECTION.BAS));
+//projectiles.push(new Projectile("fx/fireball.png", Personnage.x, Personnage.y, DIRECTIONPROJ.BAS));
 
-// fonction pour passé de la page normale a la page jeu et inversement
+// fonction pour passé de la page normale a la page jeu et inversement.
 function switchpage() {
     CurrentPage()
     if (currentPage === document.getElementById("page02")) {
@@ -19,7 +22,7 @@ function switchpage() {
     }
 }
 
-// Defini la page utilisé actuellement
+// Defini la page utilisé actuellement.
 function CurrentPage() {
     if (switchOk) {
         currentPage = document.getElementById("page02");
@@ -30,31 +33,37 @@ function CurrentPage() {
     }
 }
 
-//fonction d'animations
+//fonction d'animations.
 function animatePage() {
-    otherPage.classList.remove("switcherBack");
+     otherPage.classList.remove("switcherBack");
     otherPage.classList.add("switcher");
     currentPage.classList.add("switcherBack");
     currentPage.classList.remove("switcher");
 }
 
-//fonction qui permet de nettoyé le canvas
+//fonction qui permet de nettoyé le canvas.
 function clear() {
     ctx.clearRect(0, 0, canvasSize.x, canvasSize.y);
 };
 
-//fonction qui permet de nettoyé le canvas tout les ticks
-function tick() {
+//fonction qui permet de nettoyé le canvas tout les ticks.
+function tick(deltaTime) {
     clear();
     for (const perso of personnages) {
-        perso.tick();
+        perso.tick(deltaTime);
         perso.dessinerPersonnage(ctx);
     }
 };
 
+let lastFrameTime = performance.now();
+
 //fonction qui permet de mettre a jour l'animation du personnage.
 function updateCycle() {
-    tick();
+    const now = performance.now();
+    const deltaTime = now - lastFrameTime;
+    lastFrameTime = now;
+
+    tick(deltaTime);
     requestAnimationFrame(() => {
         updateCycle();
     });
@@ -101,9 +110,18 @@ document.addEventListener("keyup", (evt) => {
     }
 });
 
-//Permet de reinitialisé la taille de canvas apres un resize
+//Permet de reinitialisé la taille de canvas apres un resize.
 window.addEventListener('resize', () => {
     canvasSize.x = document.body.scrollHeight;
     canvasSize.y = document.body.scrollWidth;
     clear();
 })
+
+// Fonction pour verifier si le joueurs est mort !
+// Si la vie du personnage est a 0 alors le GameOver ce lance.
+function dead() {
+        gameOver.classList.remove("switcherBack");
+        gameOver.classList.add("switcher");
+        currentPage.classList.remove("switcher");
+        currentPage.classList.add("switcherBack");
+}
