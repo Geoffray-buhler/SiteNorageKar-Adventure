@@ -2,13 +2,19 @@
 
 body { overflow-x: hidden; background-color: --dark !important; }
 
+.bodybg { background: #001213; background: linear-gradient(90deg, #001213 0%, #023e40 50%, #001213 100%); }
+
 .bg { width: 100%; height: 100%; background-image: url(); }
 
 .img-card { height: 303px !important; }
 
 .img-nav { width: 80px; height: 80px; }
 
-.borderspe { border: 5px groove #1CAEC7; border-radius: 15px; }
+.borderspe-spacer { border-bottom: 5px groove #1CAEC7; }
+
+.borderspe-top { border: 5px groove #1CAEC7; border-radius: 0px 0px 15px 15px; }
+
+.borderspe-bottom { border: 5px groove #1CAEC7; border-radius: 15px 15px 0px 0px; }
 
 .nav-link { color: --fontbtn; }
 
