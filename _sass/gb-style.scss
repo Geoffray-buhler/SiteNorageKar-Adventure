@@ -1,4 +1,4 @@
-$theme-colors: ("primary": #00c2b8, "dark":#023e40, "danger": #b3ff00, "secondary": #cacaca, "info": #16fb62, "background":#00191b, "fontColor":#d8fffd);
+$theme-colors: ("primary": #00c2b8, "dark":#023e40, "danger": #b3ff00, "secondary": #9ddbdb, "info": #16fb62, "background":#00191b, "fontColor":#d8fffd);
 
 body {
     overflow-x: hidden;
@@ -21,7 +21,7 @@ body {
         height: 80px;
     }
 }
-nav{
+.borderspe{
     border: 5px groove #1CAEC7;
     border-radius: 15px;
 }
