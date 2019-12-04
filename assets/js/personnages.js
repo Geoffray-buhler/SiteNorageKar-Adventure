@@ -1,5 +1,4 @@
 // Creation du personnage
-
 function Personnage(pictureFileName, x, y, direction) {
     this.x = x; // (en cases)
     this.y = y; // (en cases)
@@ -21,7 +20,6 @@ function Personnage(pictureFileName, x, y, direction) {
     this.image.src = ASSETS_PATH + pictureFileName;
 
     // Configuration des deplacement du personnage
-
     this.keyFrame = 0;
     this.framesPerKeyFrame = 7;
     this.animatedFrames = 0;
@@ -29,7 +27,7 @@ function Personnage(pictureFileName, x, y, direction) {
 
 var herex = this.x;
 var herey = this.y;
-
+// Dessine le personnage sur le canvas
 Personnage.prototype.dessinerPersonnage = function (context) {
     context.drawImage(
         this.image,
@@ -38,8 +36,7 @@ Personnage.prototype.dessinerPersonnage = function (context) {
         (this.x * zoomRatio) - (this.width / 2) + zoomRatio / 2, (this.y * zoomRatio) - this.height + zoomRatio / 4, // Point de destination (dépend de la taille du personnage)
         this.width, this.height) // Taille du rectangle destination (c'est la taille du personnage)
 }
-
-// fonction qui permet de recuperer les coordonées du personnage et de les affiché
+// Fonction qui permet de recuperer les coordonées du personnage et de les affiché
 Personnage.prototype.localisation = function () {
     var herex = this.x;
     var herey = this.y;
@@ -80,15 +77,17 @@ Personnage.prototype.localisation = function () {
         }
     }
 }
-// fonction pour lancer des actions tout les ticks 60 ticks par seconde
-Personnage.prototype.tick = function () {
+// Fonction pour lancer des actions tout les ticks 60 ticks par seconde
+Personnage.prototype.tick = function (deltaTime) {
     this.deplacement();
     this.localisation();
     this.Sprint();
     this.actionsInGame();
-    //setInterval(this.staminaSystem(), 250);
+    this.staminaSystem(deltaTime);
+    this.moveLifeBar();
+    this.gameOver();
 }
-// systeme de deplacement du personnage en fonction des inputs
+// Systeme de deplacement du personnage en fonction des inputs
 Personnage.prototype.deplacement = function () {
     var actionsSum = 0;
     if (deplacementOk) {
@@ -147,20 +146,27 @@ Personnage.prototype.deplacement = function () {
     }
     this.updateMovementAnimation();
 }
-
-//function qui permet de lancer l'animation lors de l'appuis CTRL
+// Fonction qui permet de lancer l'animation lors de l'appuis CTRL
 Personnage.prototype.actionsInGame = function () {
     if (actions.shoot) {
-        let directionAtThisMoments = this.direction;
-        this.direction = directionAtThisMoments - 7;
-        this.updateMovementAnimation();
+        if (isCanUse) {
+            if (mana >= 0) {
+                mana = mana - 10;
+                let directionAtThisMoments = this.direction;
+                this.direction = directionAtThisMoments - 7;
+                this.updateMovementAnimation();
+                isCanUse = false;
+                this.moveManaBar();
+                setTimeout(this.countDown,1000);
+            }
+        }
     }
 };
-// fonction qui permet de verifier si le personnage bouge 
+// Fonction qui permet de verifier si le personnage bouge 
 Personnage.prototype.isMoving = function () {
     return actions.left || actions.up || actions.right || actions.down;
 };
-//permet de mettre a jour l'animation du personnage 
+// Permet de mettre a jour l'animation du personnage 
 Personnage.prototype.updateMovementAnimation = function () {
     if (!this.isMoving()) return;
 
@@ -172,32 +178,80 @@ Personnage.prototype.updateMovementAnimation = function () {
         this.animatedFrames = 0;
     }
 };
-//permet de modifier la vitesse de deplacement du personnage
+// Permet de modifier la vitesse de deplacement du personnage
 Personnage.prototype.Sprint = function () {
-    if (actions.sprint && stamina != 0) {
+    if (actions.sprint && stamina >= 0) {
         this.movementSpeed = 0.080;
         this.updateMovementAnimation();
     } else {
         this.movementSpeed = 0.032;
     }
 }
-
-Personnage.prototype.staminaSystem = function () {
+// Permet de calculer le DeltaTime
+Personnage.prototype.staminaSystem = function (deltaTime) {
+    if (switchOk) {
     if (actions.sprint && this.isMoving()) {
-        while (stamina > 0) {
-            stamina--;
+        if (stamina >= 0) {
+            stamina = stamina - deltaTime * staminaMinus;
         }
-    } else {
-        while (stamina < 100000) {
-            stamina++;
+    } else if (!actions.sprint) {
+        if (this.isMoving()) {
+            if (stamina <= 100) {
+                stamina = stamina + deltaTime * staminaMid;
+            }
+        } else if (!this.isMoving()) {
+            if (stamina <= 100) {
+                stamina = stamina + deltaTime * staminaPlus;
+            } else if (stamina >= 100 && mana <= 100) {
+                mana = mana + deltaTime * manaPlus;
+            }
         }
     }
+        this.moveStaminaBar();
+        this.moveManaBar();
+    }
 }
-
 // Answers areFloatsEqual ?
 function fEq(float1, float2) {
     //return float1 == float2; // Pb: erreurs d'approximations
 
     const tolerance = 1; // threshold
     return Math.abs(float1 - float2) < tolerance;
+}
+// Permet de metre la taille de la bar d'endurance a jours
+Personnage.prototype.moveStaminaBar = function () {
+    if (switchOk) {
+        let barOfStamina = document.getElementById("myStamina");
+        let valueOfStamina = document.getElementById("staminaValue");
+        valueOfStamina.innerHTML = `${Math.trunc(stamina)}%`;
+        barOfStamina.style.width = `${stamina}%`;
+    }
+}
+
+Personnage.prototype.moveLifeBar = function () {
+    if (switchOk) {
+        let barOfLife = document.getElementById("myLife");
+        let valueOfLife = document.getElementById("lifeValue");
+        valueOfLife.innerHTML = `${Math.trunc(life)}%`;
+        barOfLife.style.width = `${life}%`;
+    }
+}
+
+Personnage.prototype.moveManaBar = function () {
+    if (switchOk) {
+        let barOfMana = document.getElementById("myMana");
+        let valueOfMana = document.getElementById("manaValue");
+        valueOfMana.innerHTML = `${Math.trunc(mana)}%`;
+        barOfMana.style.width = `${mana}%`;
+    }
+}
+
+Personnage.prototype.gameOver = function () {
+    if (life <= 0) {
+        dead()
+    }
+}
+
+Personnage.prototype.countDown = function () {
+    isCanUse = true;
 }

@@ -1,5 +1,8 @@
 $theme-colors: ( "primary": #ff3333,"dark":#400202, "danger": #ff6a00, "secondary": #cacaca, "info": #16fb62, "background":#190000, "fontColor":#ffecd8 );
 
+body{
+    overflow-x:hidden;
+}
 
 .bg {
     width: 100%;
@@ -81,28 +84,44 @@ canvas {
     }
 
     #myLife {
-        width: 20vw;
+        width: 100%;
         height: 30px;
-        background-color: #02891e;
+        background-color: #ff0000;
         text-align: center; /* To center it horizontally (if you want) */
         line-height: 30px; /* To center it vertically */
         color: white;
     }
 
     #myStaminaContainer {
+        margin-top:5px;
         width: 20vw;
         height: 10px;
         background-color: #808080;
     }
 
     #myStamina {
-        width: 20vw;
+        width: 100%;
         height: 10px;
-        background-color: #ff6a00;
+        background-color: #16fb62;
         text-align: center; /* To center it horizontally (if you want) */
         line-height: 30px; /* To center it vertically */
         color: white;
     }
+
+#myManaContainer {
+    width: 20vw;
+    height: 20px;
+    background-color: #808080;
+}
+
+#myMana {
+    width: 100%;
+    height: 20px;
+    background-color: #0034ff;
+    text-align: center; /* To center it horizontally (if you want) */
+    line-height: 30px; /* To center it vertically */
+    color: white;
+}
 
 header {
     position: relative;
@@ -178,18 +197,23 @@ header {
         overflow: hidden;
     }
 
-    @media (pointer: coarse) and (hover: none) {
-        header {
-            background: --background no-repeat center center scroll;
+#gameOver{
+    width:100vw;
+    height:100vh;
+}
 
-            video {
-                display: none;
-            }
+@media (pointer: coarse) and (hover: none) {
+    header {
+        background: --background no-repeat center center scroll;
+
+        video {
+            display: none;
         }
     }
+}
 
-    @media screen and (min-width: 1900px) {
-        canvas {
-            display: block;
-        }
+@media screen and (min-width: 1900px) {
+    canvas {
+        display: block;
     }
+}

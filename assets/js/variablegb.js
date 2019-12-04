@@ -65,20 +65,50 @@ const canvasSize = {
 // Ratio de Zoom du personnage
 const zoomRatio = 64;
 
-// Valeu par default de deplacementOk
+// Valeur par default de deplacementOk
 
 var deplacementOk = {
     up: true,
     down: true,
     right: true,
     left: true
-}
+};
+var isCanUse = true;
+var isDead = false;
 
 var life = 100;
 
-var stamina = 100000;
+var stamina = 100;
+
+var mana = 10;
 
 var canChange = true;
 
 var currentPage = document.getElementById("page01");
 var otherPage = document.getElementById("page02");
+
+//progress Bar 
+
+var staminaMinus = 0.02;
+var staminaMid = 0.005;
+var staminaPlus = 0.01;
+var manaPlus = 0.001;
+
+var gameOver = document.getElementById("gameOver");
+
+// initialisation des projectiles
+
+const zoomRatioproj = 64;
+
+const DIRECTIONPROJ = {
+    "GAUCHE": 1,
+    "HAUTGAUCHE": 2,
+    "HAUT": 3,
+    "HAUTDROITE": 4,
+    "DROITE": 5,
+    "BASDROITE": 6,
+    "BAS": 7,
+    "BASGAUCHE": 8
+};
+
+const speedproj = 0.5;
