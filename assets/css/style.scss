@@ -2,5 +2,12 @@
 # Used for jekyll to take this file into consideration
 ---
 
+@font-face {
+    font-family: 'Air Stream';
+    font-style: normal;
+    font-weight: 400;
+    src: url({{ ./asset/font/AIRSTREA.TTF | relative_URL }});
+  };
+
 @import "gb-style";
 @import "../node_modules/bootstrap/scss/bootstrap";

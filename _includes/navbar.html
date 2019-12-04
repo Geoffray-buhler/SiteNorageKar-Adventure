@@ -1,10 +1,10 @@
-<nav class="navbar navbar-dark bg-dark rounded-bottom">
+<nav class="navbar navbar-dark bg-dark rounded-bottom shadow-lg">
     <a class="navbar-brand d-none d-sm-block" href="{{"./index.html" | relative_url}}">NORAGE</a>
     {% for files in site.articles %}
-    <a class="btn btn-primary" href="{{ files.url | relative_url }}">{{ files.title | escape }}</a>
+    <a class="btn btn-primary shadow" href="{{ files.url | relative_url }}">{{ files.title | escape }}</a>
     {% endfor %}
     <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+        <button class="btn btn-secondary dropdown-toggle shadow-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             Projet Stream
         </button>

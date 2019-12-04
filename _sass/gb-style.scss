@@ -1,4 +1,4 @@
-$theme-colors: ("primary": #ff3333, "dark":#400202, "danger": #ff6a00, "secondary": #cacaca, "info": #16fb62, "background":#190000, "fontColor":#ffecd8);
+$theme-colors: ("primary": #00c2b8, "dark":#023e40, "danger": #b3ff00, "secondary": #cacaca, "info": #16fb62, "background":#00191b, "fontColor":#d8fffd);
 
 body {
     overflow-x: hidden;
@@ -21,8 +21,13 @@ body {
         height: 80px;
     }
 }
+nav{
+    border: 5px groove #1CAEC7;
+    border-radius: 15px;
+}
 
 .nav {
+    
     &-link {
         color: --fontbtn;
     }
@@ -131,11 +136,13 @@ canvas {
 }
 
 header {
+    font-family: Air stream;
     position: relative;
     background-color: --background;
     height: 30vh;
     min-height: 25rem;
     width: 100%;
+    text-shadow: 0px 0px 20px rgba(120,243,255,0.05), 0px 0px 20px rgba(120,243,255,0.43), 0px 0px 20px #78F3FF, 0px 0px 20px #78F3FF, 0px 0px 20px #78F3FF;
     overflow: hidden;
 
     video {
