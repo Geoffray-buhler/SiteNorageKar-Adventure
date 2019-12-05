@@ -1,10 +1,9 @@
-
 function drawBubble(ctx, x, y, w, h, radius) {
     var r = x + w;
     var b = y + h;
     ctx.beginPath();
-    ctx.fillStyle = "#ff3333";
-    ctx.strokeStyle = "#ffecd8";
+    ctx.fillStyle = "#00c2b8";
+    ctx.strokeStyle = "#023e40";
     ctx.lineWidth = "2";
     ctx.moveTo(x + radius, y);
     ctx.lineTo(x + radius / 2, y - 10);
@@ -22,7 +21,7 @@ function drawBubble(ctx, x, y, w, h, radius) {
 }
 
 function drawText(textbulle, x, y) {
-    ctx.fillStyle = '#ffecd8';
+    ctx.fillStyle = '#000000';
     ctx.lineWidth = 1;
     ctx.font = '15px arial';
     ctx.fillText(textbulle, x, y);

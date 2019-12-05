@@ -1,27 +1,21 @@
 <div id="page01" class="switcher">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                {% include header.html %}
+    <div id="particle" class="position-relative">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    {% include header.html %}
+                </div>
+                <div class="col-12">
+                    {% include navbar.html %}
+                </div>
             </div>
-            <div class="col-12">
-                {% include navbar.html %}
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    {{ content }}
+                </div>
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                {{ content }}
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                {% include footer.html %}
-            </div>
-        </div>
-    </div>
-    {% include java.html %}
 </div>

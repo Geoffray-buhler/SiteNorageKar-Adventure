@@ -4,11 +4,11 @@
     <a class="btn btn-primary shadow text-dark" href="{{ files.url | relative_url }}">{{ files.title | escape }}</a>
     {% endfor %}
     <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle shadow-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             Projet Stream
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu bg-secondary shadow-lg" aria-labelledby="dropdownMenuButton">
             {% for files in site.game %}
             <a class="dropdown-item" href="{{ files.url | relative_url }}">{{ files.title | escape }}</a>
             {% endfor %}

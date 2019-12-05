@@ -35,7 +35,7 @@ function CurrentPage() {
 
 //fonction d'animations.
 function animatePage() {
-     otherPage.classList.remove("switcherBack");
+    otherPage.classList.remove("switcherBack");
     otherPage.classList.add("switcher");
     currentPage.classList.add("switcherBack");
     currentPage.classList.remove("switcher");
@@ -62,7 +62,6 @@ function updateCycle() {
     const now = performance.now();
     const deltaTime = now - lastFrameTime;
     lastFrameTime = now;
-
     tick(deltaTime);
     requestAnimationFrame(() => {
         updateCycle();
@@ -120,8 +119,8 @@ window.addEventListener('resize', () => {
 // Fonction pour verifier si le joueurs est mort !
 // Si la vie du personnage est a 0 alors le GameOver ce lance.
 function dead() {
-        gameOver.classList.remove("switcherBack");
-        gameOver.classList.add("switcher");
-        currentPage.classList.remove("switcher");
-        currentPage.classList.add("switcherBack");
+    gameOver.classList.remove("switcherBack");
+    gameOver.classList.add("switcher");
+    currentPage.classList.remove("switcher");
+    currentPage.classList.add("switcherBack");
 }

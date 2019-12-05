@@ -1,4 +1,4 @@
-$theme-colors: ("primary": #00c2b8, "dark":#023e40, "danger": #b3ff00, "secondary": #9ddbdb, "info": #16fb62, "background":#00191b, "fontColor":#d8fffd);
+$theme-colors: ("primary": #00c2b8, "dark":#023e40, "danger": #b3ff00, "secondary": #9ddbdb, "info": #79ccc7, "background":#00191b, "fontColor":#d8fffd);
 
 body {
     overflow-x: hidden;
@@ -26,8 +26,15 @@ body {
         height: 80px;
     }
 }
+
+.borderspe {
+    border: 5px groove #1CAEC7;
+    border-radius: 15px 15px 15px 15px;
+}
+
 .borderspe-spacer{
-    border-bottom: 5px groove #1CAEC7;
+    margin-bottom: 2rem;
+    border-bottom: 2px groove #1CAEC7;
 }
 
 .borderspe-top{
@@ -40,8 +47,12 @@ body {
     border-radius: 15px 15px 0px 0px;
 }
 
+index-1000{
+    z-index:10000;
+}
+
 .nav {
-    
+
     &-link {
         color: --fontbtn;
     }
