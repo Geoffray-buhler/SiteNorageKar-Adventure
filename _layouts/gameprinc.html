@@ -1,33 +1,18 @@
     {% include head.html %}
-
     <body>
-            <div class="bg-background">
-        {% include canvas.html %}
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    {% include header.html %}
-                </div>
-                <div class="col-12">
-                    {% include navbar.html %}
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12 borderspe mt-5 mb-5 bg-primary">
-                    {{ content }}
+        <div class="bodybg">
+            {% include canvas.html %}
+            {% include header.html %}
+            {% include navbar.html %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 borderspe mt-5 mb-5 bg-primary">
+                        {{ content }}
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    {% include footer.html %}
-                </div>
-            </div>
-        </div>
+            {% include footer.html %}
+            {% include java.html %}
         </div>
     </body>
-
     </html>

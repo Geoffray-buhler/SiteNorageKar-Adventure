@@ -1,13 +1,20 @@
 $theme-colors: ("primary": #00c2b8, "dark":#023e40, "danger": #b3ff00, "secondary": #9ddbdb, "info": #79ccc7, "background":#00191b, "fontColor":#d8fffd);
 
+@font-face {
+    font-family: 'Air_Stream';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../assets/font/AIRSTREA.TTF);
+  };
+
 body {
     overflow-x: hidden;
-    background-color: --dark!important;
+    background-color: --dark !important;
 }
 
-.bodybg{
-    background: rgb(0,18,19);
-    background: linear-gradient(90deg, rgba(0,18,19,1) 0%, rgba(2,62,64,1) 50%, rgba(0,18,19,1) 100%);
+.bodybg {
+    background: rgb(0, 18, 19);
+    background: linear-gradient(90deg, rgba(0, 18, 19, 1) 0%, rgba(2, 62, 64, 1) 50%, rgba(0, 18, 19, 1) 100%);
 }
 
 .bg {
@@ -32,27 +39,26 @@ body {
     border-radius: 15px 15px 15px 15px;
 }
 
-.borderspe-spacer{
+.borderspe-spacer {
     margin-bottom: 2rem;
     border-bottom: 2px groove #1CAEC7;
 }
 
-.borderspe-top{
+.borderspe-top {
     border: 5px groove #1CAEC7;
-    border-radius: 0px 0px 15px 15px ;
+    border-radius: 0px 0px 15px 15px;
 }
 
-.borderspe-bottom{
+.borderspe-bottom {
     border: 5px groove #1CAEC7;
     border-radius: 15px 15px 0px 0px;
 }
 
-index-1000{
-    z-index:10000;
+index-1000 {
+    z-index: 10000;
 }
 
 .nav {
-
     &-link {
         color: --fontbtn;
     }
@@ -160,14 +166,18 @@ canvas {
     color: white;
 }
 
+#super-div {
+    position: absolute !important;
+}
+
 header {
-    font-family: Air stream;
+    font-family: Air_Stream;
     position: relative;
     background-color: --background;
     height: 30vh;
     min-height: 25rem;
     width: 100%;
-    text-shadow: 0px 0px 20px rgba(120,243,255,0.05), 0px 0px 20px rgba(120,243,255,0.43), 0px 0px 20px #78F3FF, 0px 0px 20px #78F3FF, 0px 0px 20px #78F3FF;
+    text-shadow: 0px 0px 20px rgba(120, 243, 255, 0.05), 0px 0px 20px rgba(120, 243, 255, 0.43), 0px 0px 20px #78F3FF, 0px 0px 20px #78F3FF, 0px 0px 20px #78F3FF;
     overflow: hidden;
 
     video {
