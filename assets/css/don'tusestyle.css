@@ -1,0 +1,103 @@
+.bg {
+  width: 100%;
+  height: 100%;
+  background: #50505028;
+  background-image: url();
+}
+
+.img-card {
+  width: 20vw;
+  height: 20vh;
+}
+
+.img-nav {
+  width: 80px;
+  height: 80px;
+}
+
+.nav-link {
+  color: #16fb62;
+}
+
+.rounded-right {
+  border-top-right-radius: 25px !important;
+  border-bottom-right-radius: 25px !important;
+}
+
+.border-top {
+  border-top: 3px solid #dee2e6 !important;
+}
+
+.rounded-bottom {
+  border-bottom-right-radius: 1rem !important;
+  border-bottom-left-radius: 1rem !important;
+}
+
+.card-container{
+  justify-content: center;
+  text-align: center;
+  display: block!important;
+}
+
+.attachment-full {
+  z-index: 4;
+  position: absolute!important;
+}
+
+canvas {
+  position: absolute;
+  z-index: 50000000000;
+  width: 99%;
+  height: 99%;
+  pointer-events: none;
+}
+
+header {
+  position: relative;
+  background-color: black;
+  height: 30vh;
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+header video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 10%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+header .container {
+  position: relative;
+  z-index: 2;
+}
+
+header .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.2;
+  z-index: 1;
+}
+
+@media (pointer: coarse) and (hover: none) {
+  header {
+    background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
+  }
+
+  header video {
+    display: none;
+  }
+}

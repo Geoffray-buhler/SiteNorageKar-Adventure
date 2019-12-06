@@ -1,0 +1,1 @@
+const ASSETS_PATH = "/SiteNorageKar-Adventure/assets/img/perso/";
