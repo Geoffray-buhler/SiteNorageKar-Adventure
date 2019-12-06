@@ -1,5 +1,4 @@
 // Definition des bouleens pour les direction de deplacement du personnage
-
 const actions = {
     "up": false,
     "down": false,
