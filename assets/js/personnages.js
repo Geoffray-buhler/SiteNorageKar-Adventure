@@ -12,8 +12,14 @@ class Personnage {
         this.x = x; // (en cases)
         this.y = y; // (en cases)
 
-        var herex = this.x;
-        var herey = this.y;
+        this.mana = 100;
+        this.stamina = 100;
+        this.life = 100;
+
+        this.staminaMinus = 0.02;
+        this.staminaMid = 0.005;
+        this.staminaPlus = 0.01;
+        this.manaPlus = 0.001;
 
         this.direction = direction;
 
@@ -108,8 +114,8 @@ class Personnage {
     deplacement() {
         var actionsSum = 0;
         if (deplacementOk) {
-            var anglex = NaN; // en degrés
-            var angley = NaN; // en degrés
+            let anglex = NaN; // en degrés
+            let angley = NaN; // en degrés
             if (actions.down) {
                 angley = 90;
                 this.direction = DIRECTION.BAS;
@@ -166,10 +172,10 @@ class Personnage {
     // Fonction qui permet de lancer l'animation lors de l'appuis CTRL.
     actionsInGame() {
         if (actions.shoot) {
-            if (isCanUse) {
-                if (mana >= 0) {
-                    mana = mana - 10;
-                    isCanUse = false;
+            if (this.isCanUse) {
+                if (this.mana >= 0) {
+                    this.mana = this.mana - 10;
+                    this.isCanUse = false;
                     this.moveManaBar();
                     setTimeout(this.countDown, 1000);
                 }
@@ -194,7 +200,7 @@ class Personnage {
     }
     // Permet de modifier la vitesse de deplacement du personnage en fonction de l'endurance.
     Sprint() {
-        if (actions.sprint && stamina >= 0) {
+        if (actions.sprint && this.stamina >= 0) {
             this.movementSpeed = 0.080;
             this.updateMovementAnimation();
         } else {
@@ -205,19 +211,19 @@ class Personnage {
     staminaSystem(deltaTime) {
         if (switchOk) {
             if (actions.sprint && this.isMoving()) {
-                if (stamina >= 0) {
-                    stamina = stamina - deltaTime * staminaMinus;
+                if (this.stamina >= 0) {
+                    this.stamina = this.stamina - deltaTime * this.staminaMinus;
                 }
             } else if (!actions.sprint) {
                 if (this.isMoving()) {
-                    if (stamina <= 100) {
-                        stamina = stamina + deltaTime * staminaMid;
+                    if (this.stamina <= 100) {
+                        this.stamina = this.stamina + deltaTime * this.staminaMid;
                     }
                 } else if (!this.isMoving()) {
-                    if (stamina <= 100) {
-                        stamina = stamina + deltaTime * staminaPlus;
-                    } else if (stamina >= 100 && mana <= 100) {
-                        mana = mana + deltaTime * manaPlus;
+                    if (this.stamina <= 100) {
+                        this.stamina = this.stamina + deltaTime * this.staminaPlus;
+                    } else if (this.stamina >= 100 && this.mana <= 100) {
+                        this.mana = this.mana + deltaTime * this.manaPlus;
                     }
                 }
             }
@@ -230,8 +236,8 @@ class Personnage {
         if (switchOk) {
             let barOfStamina = document.getElementById("myStamina");
             let valueOfStamina = document.getElementById("staminaValue");
-            valueOfStamina.innerHTML = `${Math.trunc(stamina)}%`;
-            barOfStamina.style.width = `${stamina}%`;
+            valueOfStamina.innerHTML = `${Math.trunc(this.stamina)}%`;
+            barOfStamina.style.width = `${this.stamina}%`;
         }
     }
 
@@ -239,8 +245,8 @@ class Personnage {
         if (switchOk) {
             let barOfLife = document.getElementById("myLife");
             let valueOfLife = document.getElementById("lifeValue");
-            valueOfLife.innerHTML = `${Math.trunc(life)}%`;
-            barOfLife.style.width = `${life}%`;
+            valueOfLife.innerHTML = `${Math.trunc(this.life)}%`;
+            barOfLife.style.width = `${this.life}%`;
         }
     }
 
@@ -248,17 +254,17 @@ class Personnage {
         if (switchOk) {
             let barOfMana = document.getElementById("myMana");
             let valueOfMana = document.getElementById("manaValue");
-            valueOfMana.innerHTML = `${Math.trunc(mana)}%`;
-            barOfMana.style.width = `${mana}%`;
+            valueOfMana.innerHTML = `${Math.trunc(this.mana)}%`;
+            barOfMana.style.width = `${this.mana}%`;
         }
     }
     // Fonction qui permet d'avoir un temp de pause entre deux compétence. 
     countDown() {
-        isCanUse = true;
+        this.isCanUse = true;
     }
     // Fonction qui affiche un écran de fin de partie a la mort du personnage.
     gameOver() {
-        if (life <= 0) {
+        if (this.life <= 0) {
             dead()
         }
     }

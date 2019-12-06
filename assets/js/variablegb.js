@@ -72,15 +72,9 @@ var deplacementOk = {
     right: true,
     left: true
 };
-var isCanUse = true;
+
 var isDead = false;
 var isOnButton = false;
-
-var life = 100;
-
-var stamina = 100;
-
-var mana = 10;
 
 var canChange = true;
 
@@ -89,13 +83,6 @@ var otherPage = document.getElementById("page02");
 
 const superDiv = document.getElementById("super-div");
 const gameOver = document.getElementById("game-over");
-
-//progress Bar 
-
-var staminaMinus = 0.02;
-var staminaMid = 0.005;
-var staminaPlus = 0.01;
-var manaPlus = 0.001;
 
 // initialisation des projectiles
 
