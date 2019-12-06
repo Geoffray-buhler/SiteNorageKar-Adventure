@@ -96,8 +96,6 @@ class Personnage {
                 superDiv.classList.remove("d-none");
                 this.direction = DIRECTION.BAS;
             }
-            superDiv.style.left = `(x+1)px`;
-            superDiv.style.top = `(y+1)px`;
         }
     }
     // Fonction pour lancer des actions tout les ticks 60 ticks par seconde
@@ -108,6 +106,7 @@ class Personnage {
         this.actionsInGame();
         this.staminaSystem(deltaTime);
         this.moveLifeBar();
+        this.followDiv();
         this.gameOver();
     }
     // Fonction qui permet de deplacer le personnage en avec les touches du clavier.
@@ -267,6 +266,11 @@ class Personnage {
         if (this.life <= 0) {
             dead()
         }
+    }
+    
+    followDiv() {
+        superDiv.style.left = `${this.herex + 1}px`;
+        superDiv.style.top = `${this.herey + 1}px`;
     }
 }
 

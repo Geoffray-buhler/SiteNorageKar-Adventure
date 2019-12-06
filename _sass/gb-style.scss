@@ -5,6 +5,11 @@ body {
     background-color: --dark!important;
 }
 
+.super-div{
+    left: 0;
+    top:0;
+}
+
 .bodybg{
     background: rgb(0,18,19);
     background: linear-gradient(90deg, rgba(0,18,19,1) 0%, rgba(2,62,64,1) 50%, rgba(0,18,19,1) 100%);
